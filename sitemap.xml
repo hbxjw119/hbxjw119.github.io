@@ -4,7 +4,14 @@
   <url>
     <loc>http://xujimmy.com/2019/12/11/use-proto.html</loc>
     
-    <lastmod>2020-05-24T04:41:46.469Z</lastmod>
+    <lastmod>2020-06-24T08:27:43.309Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xujimmy.com/2020/05/22/poison-detect.html</loc>
+    
+    <lastmod>2020-06-24T07:57:26.118Z</lastmod>
     
   </url>
   
@@ -37,7 +44,7 @@
   </url>
   
   <url>
-    <loc>http://xujimmy.com/2017/11/25/books.html</loc>
+    <loc>http://xujimmy.com/2019/09/29/computer-memory.html</loc>
     
     <lastmod>2019-11-08T08:55:08.650Z</lastmod>
     
@@ -51,7 +58,7 @@
   </url>
   
   <url>
-    <loc>http://xujimmy.com/2019/09/29/computer-memory.html</loc>
+    <loc>http://xujimmy.com/2017/11/25/books.html</loc>
     
     <lastmod>2019-11-08T08:55:08.650Z</lastmod>
     
@@ -65,14 +72,14 @@
   </url>
   
   <url>
-    <loc>http://xujimmy.com/2019/06/27/what-is-io-multiplexing.html</loc>
+    <loc>http://xujimmy.com/2019/07/21/pxe-install-os.html</loc>
     
     <lastmod>2019-11-08T08:55:08.649Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://xujimmy.com/2019/07/21/pxe-install-os.html</loc>
+    <loc>http://xujimmy.com/2019/06/27/what-is-io-multiplexing.html</loc>
     
     <lastmod>2019-11-08T08:55:08.649Z</lastmod>
     
@@ -163,14 +170,14 @@
   </url>
   
   <url>
-    <loc>http://xujimmy.com/2017/12/01/https-blog.html</loc>
+    <loc>http://xujimmy.com/2017/12/11/https-handshakes.html</loc>
     
     <lastmod>2019-11-08T08:55:08.644Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://xujimmy.com/2017/12/11/https-handshakes.html</loc>
+    <loc>http://xujimmy.com/2017/12/01/https-blog.html</loc>
     
     <lastmod>2019-11-08T08:55:08.644Z</lastmod>
     
@@ -191,14 +198,14 @@
   </url>
   
   <url>
-    <loc>http://xujimmy.com/2017/10/15/shuffle.html</loc>
+    <loc>http://xujimmy.com/2017/11/02/back-to-beijing.html</loc>
     
     <lastmod>2019-11-08T08:55:08.643Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://xujimmy.com/2017/11/02/back-to-beijing.html</loc>
+    <loc>http://xujimmy.com/2017/10/15/shuffle.html</loc>
     
     <lastmod>2019-11-08T08:55:08.643Z</lastmod>
     
@@ -219,13 +226,6 @@
   </url>
   
   <url>
-    <loc>http://xujimmy.com/2017/09/12/lnmp-debug.html</loc>
-    
-    <lastmod>2019-11-08T08:55:08.642Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://xujimmy.com/2017/09/10/tcp-http.html</loc>
     
     <lastmod>2019-11-08T08:55:08.642Z</lastmod>
@@ -233,7 +233,7 @@
   </url>
   
   <url>
-    <loc>http://xujimmy.com/2017/10/11/fpm-conf.html</loc>
+    <loc>http://xujimmy.com/2017/09/12/lnmp-debug.html</loc>
     
     <lastmod>2019-11-08T08:55:08.642Z</lastmod>
     
@@ -247,14 +247,14 @@
   </url>
   
   <url>
-    <loc>http://xujimmy.com/2017/08/11/weixin-dev.html</loc>
+    <loc>http://xujimmy.com/2017/10/11/fpm-conf.html</loc>
     
-    <lastmod>2019-11-08T08:55:08.641Z</lastmod>
+    <lastmod>2019-11-08T08:55:08.642Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://xujimmy.com/2017/08/20/install-nginx.html</loc>
+    <loc>http://xujimmy.com/2017/08/11/weixin-dev.html</loc>
     
     <lastmod>2019-11-08T08:55:08.641Z</lastmod>
     
@@ -268,9 +268,9 @@
   </url>
   
   <url>
-    <loc>http://xujimmy.com/2017/04/10/docker.html</loc>
+    <loc>http://xujimmy.com/2017/08/20/install-nginx.html</loc>
     
-    <lastmod>2019-11-08T08:55:08.640Z</lastmod>
+    <lastmod>2019-11-08T08:55:08.641Z</lastmod>
     
   </url>
   
@@ -283,6 +283,13 @@
   
   <url>
     <loc>http://xujimmy.com/2017/01/16/linux-command.html</loc>
+    
+    <lastmod>2019-11-08T08:55:08.640Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xujimmy.com/2017/04/10/docker.html</loc>
     
     <lastmod>2019-11-08T08:55:08.640Z</lastmod>
     
@@ -324,14 +331,7 @@
   </url>
   
   <url>
-    <loc>http://xujimmy.com/2016/11/16/linux-awk.html</loc>
-    
-    <lastmod>2019-11-08T08:55:08.638Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://xujimmy.com/2016/10/18/git-alias.html</loc>
+    <loc>http://xujimmy.com/2016/10/11/linux-sort.html</loc>
     
     <lastmod>2019-11-08T08:55:08.638Z</lastmod>
     
@@ -345,7 +345,14 @@
   </url>
   
   <url>
-    <loc>http://xujimmy.com/2016/10/11/linux-sort.html</loc>
+    <loc>http://xujimmy.com/2016/10/18/git-alias.html</loc>
+    
+    <lastmod>2019-11-08T08:55:08.638Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xujimmy.com/2016/11/16/linux-awk.html</loc>
     
     <lastmod>2019-11-08T08:55:08.638Z</lastmod>
     
