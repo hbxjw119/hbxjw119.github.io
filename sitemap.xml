@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://xujimmy.com/2020/07/12/introduction-virtual-memory.html</loc>
+    
+    <lastmod>2020-08-18T08:51:51.643Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://xujimmy.com/2019/12/11/use-proto.html</loc>
     
     <lastmod>2020-06-24T08:27:43.309Z</lastmod>
@@ -114,13 +121,6 @@
   </url>
   
   <url>
-    <loc>http://xujimmy.com/2018/06/20/java-collections-generics-best-practices.html</loc>
-    
-    <lastmod>2019-11-08T08:55:08.647Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://xujimmy.com/2018/10/22/java-concurrent.html</loc>
     
     <lastmod>2019-11-08T08:55:08.647Z</lastmod>
@@ -128,14 +128,21 @@
   </url>
   
   <url>
-    <loc>http://xujimmy.com/2018/03/16/start-rabbitmq.html</loc>
+    <loc>http://xujimmy.com/2018/06/20/java-collections-generics-best-practices.html</loc>
+    
+    <lastmod>2019-11-08T08:55:08.647Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xujimmy.com/2018/03/22/about-mathematical-formula.html</loc>
     
     <lastmod>2019-11-08T08:55:08.646Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://xujimmy.com/2018/03/22/about-mathematical-formula.html</loc>
+    <loc>http://xujimmy.com/2018/03/16/start-rabbitmq.html</loc>
     
     <lastmod>2019-11-08T08:55:08.646Z</lastmod>
     
@@ -149,13 +156,6 @@
   </url>
   
   <url>
-    <loc>http://xujimmy.com/2018/01/20/about-vps.html</loc>
-    
-    <lastmod>2019-11-08T08:55:08.645Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://xujimmy.com/2018/01/06/blog-update.html</loc>
     
     <lastmod>2019-11-08T08:55:08.645Z</lastmod>
@@ -164,6 +164,13 @@
   
   <url>
     <loc>http://xujimmy.com/2018/01/22/about-csdn.html</loc>
+    
+    <lastmod>2019-11-08T08:55:08.645Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xujimmy.com/2018/01/20/about-vps.html</loc>
     
     <lastmod>2019-11-08T08:55:08.645Z</lastmod>
     
@@ -205,14 +212,14 @@
   </url>
   
   <url>
-    <loc>http://xujimmy.com/2017/10/15/shuffle.html</loc>
+    <loc>http://xujimmy.com/2017/11/15/go-arr-slice.html</loc>
     
     <lastmod>2019-11-08T08:55:08.643Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://xujimmy.com/2017/11/15/go-arr-slice.html</loc>
+    <loc>http://xujimmy.com/2017/10/15/shuffle.html</loc>
     
     <lastmod>2019-11-08T08:55:08.643Z</lastmod>
     
@@ -226,7 +233,7 @@
   </url>
   
   <url>
-    <loc>http://xujimmy.com/2017/09/10/tcp-http.html</loc>
+    <loc>http://xujimmy.com/2017/09/20/slow-mysql.html</loc>
     
     <lastmod>2019-11-08T08:55:08.642Z</lastmod>
     
@@ -240,14 +247,14 @@
   </url>
   
   <url>
-    <loc>http://xujimmy.com/2017/09/20/slow-mysql.html</loc>
+    <loc>http://xujimmy.com/2017/10/11/fpm-conf.html</loc>
     
     <lastmod>2019-11-08T08:55:08.642Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://xujimmy.com/2017/10/11/fpm-conf.html</loc>
+    <loc>http://xujimmy.com/2017/09/10/tcp-http.html</loc>
     
     <lastmod>2019-11-08T08:55:08.642Z</lastmod>
     
@@ -303,20 +310,6 @@
   </url>
   
   <url>
-    <loc>http://xujimmy.com/2016/11/16/linux-grep.html</loc>
-    
-    <lastmod>2019-11-08T08:55:08.639Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://xujimmy.com/2016/12/21/influxdb-grafana.html</loc>
-    
-    <lastmod>2019-11-08T08:55:08.639Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://xujimmy.com/2017/01/02/php-di.html</loc>
     
     <lastmod>2019-11-08T08:55:08.639Z</lastmod>
@@ -331,14 +324,28 @@
   </url>
   
   <url>
-    <loc>http://xujimmy.com/2016/10/11/linux-sort.html</loc>
+    <loc>http://xujimmy.com/2016/12/21/influxdb-grafana.html</loc>
+    
+    <lastmod>2019-11-08T08:55:08.639Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xujimmy.com/2016/11/16/linux-grep.html</loc>
+    
+    <lastmod>2019-11-08T08:55:08.639Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xujimmy.com/2016/08/22/python-PhantomJS.html</loc>
     
     <lastmod>2019-11-08T08:55:08.638Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://xujimmy.com/2016/08/22/python-PhantomJS.html</loc>
+    <loc>http://xujimmy.com/2016/10/11/linux-sort.html</loc>
     
     <lastmod>2019-11-08T08:55:08.638Z</lastmod>
     
@@ -366,13 +373,6 @@
   </url>
   
   <url>
-    <loc>http://xujimmy.com/2016/08/02/redis.html</loc>
-    
-    <lastmod>2019-11-08T08:55:08.637Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://xujimmy.com/2016/08/12/ssh-monitor.html</loc>
     
     <lastmod>2019-11-08T08:55:08.637Z</lastmod>
@@ -381,6 +381,13 @@
   
   <url>
     <loc>http://xujimmy.com/2016/08/11/linux-xargs-redis.html</loc>
+    
+    <lastmod>2019-11-08T08:55:08.637Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://xujimmy.com/2016/08/02/redis.html</loc>
     
     <lastmod>2019-11-08T08:55:08.637Z</lastmod>
     
