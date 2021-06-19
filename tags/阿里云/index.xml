@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>阿里云 on JimmyXu的小站</title>
+    <link>http://xujimmy.com/tags/%E9%98%BF%E9%87%8C%E4%BA%91.html</link>
+    <description>Recent content in 阿里云 on JimmyXu的小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Fri, 01 Dec 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://xujimmy.com/tags/%E9%98%BF%E9%87%8C%E4%BA%91/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>给博客启用 HTTPS</title>
+      <link>http://xujimmy.com/2017/12/01/https-blog.html</link>
+      <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/12/01/https-blog.html</guid>
+      <description>&lt;p&gt;在几个月前，当博客放到阿里云时，就想尝试下开启 HTTPS，在尝试之前，我读了几篇启用 HTTPS 的经验文章，发现现在有了很方便的工具：&lt;a href=&#34;https://github.com/Neilpang/acme.sh&#34;&gt;acme.sh&lt;/a&gt;。基本不用你做太多额外操作，即可开启 HTTPS。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

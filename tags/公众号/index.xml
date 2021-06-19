@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>公众号 on JimmyXu的小站</title>
+    <link>http://xujimmy.com/tags/%E5%85%AC%E4%BC%97%E5%8F%B7.html</link>
+    <description>Recent content in 公众号 on JimmyXu的小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Fri, 29 Dec 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://xujimmy.com/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>用微信公众号记账</title>
+      <link>http://xujimmy.com/2017/12/29/weixin-account.html</link>
+      <pubDate>Fri, 29 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/12/29/weixin-account.html</guid>
+      <description>&lt;p&gt;之前申请了个微信公众号，完成了一些小功能后，就一直没怎么玩了，由于今年下半年开始，和女票住一起了，开销骤增，于是决定开始记录下每田的开支情况，统计我们的消费习惯。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>微信公众号开发初探</title>
+      <link>http://xujimmy.com/2017/08/11/weixin-dev.html</link>
+      <pubDate>Fri, 11 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/08/11/weixin-dev.html</guid>
+      <description>&lt;p&gt;最近利用空闲时间，申请了个微信公众号，完成一些小功能练练手，本文总结下开发公众号期间的一些步骤，心得和体会吧。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

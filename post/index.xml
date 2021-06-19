@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on JimmyXu的小站</title>
+    <link>http://xujimmy.com/post.html</link>
+    <description>Recent content in Posts on JimmyXu的小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 29 May 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://xujimmy.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>谈谈美术绘画</title>
+      <link>http://xujimmy.com/2021/05/29/about-painting-arts.html</link>
+      <pubDate>Sat, 29 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2021/05/29/about-painting-arts.html</guid>
+      <description>&lt;p&gt;最近看了吴军博士写的《文明之光》，里面有一章讲了西方绘画艺术的发展，很生动，恰好最近家附近的博物馆办了个拉斐尔绘画的展览，我很感兴趣，因此也整理下自己的感受，形成书面记录。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>虚拟内存简介</title>
+      <link>http://xujimmy.com/2020/07/12/introduction-virtual-memory.html</link>
+      <pubDate>Sun, 12 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2020/07/12/introduction-virtual-memory.html</guid>
+      <description>&lt;p&gt;虚拟内存是计算机领域中一个很重要的概念，不管是对于日常工作排查问题，还是技术面试，出现的频率都很高。之前对这块内容的理解一直只存在于头脑里，现在把它拿出来，形成书面记录。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>由病毒检测想到的一种面试题</title>
+      <link>http://xujimmy.com/2020/05/22/poison-detect.html</link>
+      <pubDate>Fri, 22 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2020/05/22/poison-detect.html</guid>
+      <description>&lt;p&gt;最近看到一个新闻，武汉开展全城新冠病毒核酸检测，要在 10 天内检测全市 1000 多万人中病毒携带者，这无疑是一个巨大的工程。这里我不打算深究医护人员是采用什么方式完成这项任务，主要想从这个检测事例中，引出一个有意思、又很有实践意义的问题：有 N 瓶无色无味液体（N 可能很大，如 100，1000，10000 等），其中混入了一瓶有毒液体，同时也有试剂，可以检测液体的毒性，如果试剂滴入到有毒液体中，液体变蓝，否则不变色，除此之外，不能通过其他方式检测。问题来了，如何用最少的检测次数，找到这瓶有毒液体。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用 protobuf</title>
+      <link>http://xujimmy.com/2019/12/11/use-proto.html</link>
+      <pubDate>Wed, 11 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2019/12/11/use-proto.html</guid>
+      <description>&lt;p&gt;在软件开发过程中，通常会使用 http 方式调用别人的接口获取数据，json 是一种流行且易读的数据交换格式，因此在调接口时，大家都习惯用这种格式。但对于微服务来说，或者对于高性能的 rpc 请求，http 和 json 实际还是有点过重，具体体现在，http 协议规定了在传输数据时，必须要有请求头，请求行，请求体。而 protobuf 格式的数据，可以很好解决这个问题。它对传输的数据做了很好的编码和压缩，虽然不易阅读，但传输的体积和效率，比 json 或 xml 好很多。与 protobuf 类似的，还有 thrift。虽然使用上有差别，但目的都是类似：高性能的序列化框架。本文记录下如何使用 proto 格式处理数据，或者称为消息。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>程序员需要知道的数量级</title>
+      <link>http://xujimmy.com/2019/09/29/computer-memory.html</link>
+      <pubDate>Sun, 29 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2019/09/29/computer-memory.html</guid>
+      <description>&lt;p&gt;看书的时候，遇到这么一个表，我觉得非常有用，特此记录下。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>云计算中的资源调度</title>
+      <link>http://xujimmy.com/2019/08/11/schedule-in-cloud.html</link>
+      <pubDate>Sun, 11 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2019/08/11/schedule-in-cloud.html</guid>
+      <description>&lt;p&gt;云厂商将机房中服务器的计算能力进行整合，如 CPU、内存等，并把这些硬件统一抽象为资源，然后按需卖给用户，这就是云计算理念，怎么把这些资源有效的管理和调度起来，最大化资源利用率，关系着云厂商的成本和营收，也是各厂商实现差异化的一个重要切入点。本文讲讲云计算中的资源调度，或者称为 scheduler。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用 PXE 从网络安装操作系统</title>
+      <link>http://xujimmy.com/2019/07/21/pxe-install-os.html</link>
+      <pubDate>Sun, 21 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2019/07/21/pxe-install-os.html</guid>
+      <description>&lt;p&gt;平时我们拿到一台新电脑后，第一件事就是安装操作系统，安装系统常规方式是用光盘或 U 盘，需要提前在 BIOS 里设置引导顺序，让 CDROM 或 U 盘为第一引导项，重启后就可以走安装系统流程了，安装过程中还需要手动设置一些选项，如设置时区，硬盘分区等。等安装完后，再设置 BIOS 从硬盘启动，系统就算安装好了。这是家庭或电脑店里的常规方式。试想下，企业采购一批服务器，100 台甚至上千台，如果仍然采用这种方式，那运维得累死。这时，我们可以采用 PXE 方式，从网络给服务器安装系统。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>什么是 I/O 多路复用</title>
+      <link>http://xujimmy.com/2019/06/27/what-is-io-multiplexing.html</link>
+      <pubDate>Thu, 27 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2019/06/27/what-is-io-multiplexing.html</guid>
+      <description>&lt;p&gt;在高并发环境下，web 服务器需要处理成千上万的客户端连接，如何最大限度发挥单台机器的性能，使之在处理大量连接时仍保持较低的负载，这是个很重要的课题。本文介绍下解决此类问题的一种很经典的方式：I/O 多路复用。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Java 中 Future 和异步任务</title>
+      <link>http://xujimmy.com/2019/05/29/java-future-and-executor.html</link>
+      <pubDate>Wed, 29 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2019/05/29/java-future-and-executor.html</guid>
+      <description>&lt;p&gt;Java 中的多线程技术一直是个热门话题，而线程池、异步任务是多线程编程中绕不开的一个技术要点，本文介绍下 java 中的 Future 相关使用方法以及任务执行框架 ExecutorService。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>git pull 和 git rebase</title>
+      <link>http://xujimmy.com/2019/04/23/git-pull-and-git-rebase.html</link>
+      <pubDate>Tue, 23 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2019/04/23/git-pull-and-git-rebase.html</guid>
+      <description>&lt;p&gt;git 是团队开发中常用的代码版本管理工具，我们经常会遇到这样一个场景：在 feature 分支上开发完一个新功能后，通常会做这样的操作：&lt;code&gt;git pull&lt;/code&gt;，然后&lt;code&gt;git push&lt;/code&gt;。但也有人喜欢在&lt;code&gt;git pull&lt;/code&gt;后面再上&lt;code&gt;--rebase&lt;/code&gt;参数，即&lt;code&gt;git pull --rebase&lt;/code&gt;，这是什么意思呢？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Docker 和 KVM 虚拟机</title>
+      <link>http://xujimmy.com/2019/04/01/docker-and-vm.html</link>
+      <pubDate>Mon, 01 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2019/04/01/docker-and-vm.html</guid>
+      <description>&lt;p&gt;近几年，随着微服务概念和容器化思想的风(chao)靡(zuo)，Docker 技术成了各大厂和各种吹牛大会上的香饽饽，一提到 Docker，就是各种优势，大有在云计算领域一统江湖的趋势。但是 Docker 真的是万精油吗？本文简单介绍下 Docker 的一些底层技术，以及和传统虚拟机的一些差异。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Java 中常用的监控和故障处理命令行工具</title>
+      <link>http://xujimmy.com/2019/03/24/java-analyzer-tools.html</link>
+      <pubDate>Sun, 24 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2019/03/24/java-analyzer-tools.html</guid>
+      <description>&lt;p&gt;我们常常需要获取 Java 程序运行过程中的一些执行情况，如执行路径，GC 情况，堆栈信息等。JDK 给我们提供了一些简单但却很有用的命令行工具，本文介绍下这些工具的使用和参数说明，用于备忘。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Java 中的同步方法</title>
+      <link>http://xujimmy.com/2018/10/12/java-concurrent.html</link>
+      <pubDate>Fri, 12 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2018/10/12/java-concurrent.html</guid>
+      <description>&lt;p&gt;说到 java 中的同步，必然少不了耳熟能详的&lt;code&gt;synchronized&lt;/code&gt;，&lt;code&gt;ReentrantLock&lt;/code&gt;，以及可能用过但不怎么常见的&lt;code&gt;Atomic&lt;/code&gt;，&lt;code&gt;volatile&lt;/code&gt;，本篇即简单介绍下他们的区别和使用场景。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Java 中集合和泛型最佳实践</title>
+      <link>http://xujimmy.com/2018/06/20/java-collections-generics-best-practices.html</link>
+      <pubDate>Wed, 20 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2018/06/20/java-collections-generics-best-practices.html</guid>
+      <description>&lt;p&gt;最近看 Java，读到一篇比较好的英文文章，特翻译了下记录下来。原文链接在&lt;a href=&#34;http://www.codejava.net/java-core/collections/18-java-collections-and-generics-best-practices&#34;&gt;这里&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;集合类和泛型是 Java 中比较常用的技术，也是面试时经常问到的点。本篇文章向大家分享的，是一个资深 Java 开发者多年的实战经验。通过本篇文章，你会了解怎么高效而优雅的使用集合、泛型，而不是仅仅停留在 “just work”。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>我的这 10 年</title>
+      <link>http://xujimmy.com/2018/06/07/my-10-years.html</link>
+      <pubDate>Thu, 07 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2018/06/07/my-10-years.html</guid>
+      <description>&lt;p&gt;这篇文字在草稿箱里已经存了几个月了，趁着周末加班改完 bug，还是做个了结吧。&lt;/p&gt;
+&lt;p&gt;现在是2018年6月，新闻前两天还一直在报道今年高考的消息，今年全国高考人970万。回想起我第一次参加高考，已经过去整整 10 年了，现在看到视频里那些进入考场的莘莘学子，感慨万分，他们才是早上八九点的太阳啊。。。看了下历年的高考人数变化，没想到，我高考的那两年，居然是高考人数的最高峰。像是过关游戏中，小手一抖，选择了 hard 模式。高考的人数变化，也一定程度上，反应了我们国家人口的变化。越来越多的人相信，在未来半个世纪，中国劳动力人口在呈逐年下降趋势。目前，国家全面开放二胎政策，鼓励多生。想想当年父母生我弟时，由于“计划生育”，村中大队的人过来要求罚款，但家里实在一贫如洗，那些人就如强盗样，把家唯一的家电：一台收音机给抱走了。这才多少年啊？！而现在孩子如同碎钞机，巨大抚养压力，反而大多数家庭都打消了二胎的想法，不可谓不讽刺。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>关于 zookeeper 的一些原理</title>
+      <link>http://xujimmy.com/2018/04/08/zookeeper.html</link>
+      <pubDate>Sun, 08 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2018/04/08/zookeeper.html</guid>
+      <description>&lt;p&gt;分布式系统中，协调和管理服务是一个复杂的过程，数据的一致性也是一个不可避免的问题，而 zookeeper 是一个解决分布式集群应用中数据一致性问题的有效工具，它提供基于类似于文件系统的目录节点树方式的数据存储，&lt;strong&gt;但是 zookeeper 并不是用来专门存储数据，它的主要作用是用来维护和监控你存储的数据的状态变化。通过监控这些数据状态的变化，从而可以达到基于数据的集群管理。&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>数学上的一些经典片段</title>
+      <link>http://xujimmy.com/2018/03/22/about-mathematical-formula.html</link>
+      <pubDate>Thu, 22 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2018/03/22/about-mathematical-formula.html</guid>
+      <description>&lt;p&gt;最近看的几本书里，都有提到一些数学方面的知识，有些符号和公式，放在现在，可能觉得没什么，一个小学生都能看懂，但却鲜有人知道，普及这些理论，需要几代人的不懈努力和探索。有些公式和推导，都堪称数学史上的经典，这里摘取一些片段，体会下数学的美妙，也让我们看看人类的智慧是无穷的&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>RabbitMQ 的简单使用</title>
+      <link>http://xujimmy.com/2018/03/16/start-rabbitmq.html</link>
+      <pubDate>Fri, 16 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2018/03/16/start-rabbitmq.html</guid>
+      <description>&lt;p&gt;在高性能，高可用，解耦的系统中，消息队列 ( Message Queue) 组件是少不了的。现在市面是有各种流行的 MQ 框架，比如 kafka，rabbitmq，roketmq，zeromq等。各个公司为了适应自己业务的发展，有的会自己造轮子，而有的则在开源消息队里的基础上，做了进一步的改造和优化。本文使用 rabbitmq，作为消息队列的入门使用。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CSDN 的困境</title>
+      <link>http://xujimmy.com/2018/01/22/about-csdn.html</link>
+      <pubDate>Mon, 22 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2018/01/22/about-csdn.html</guid>
+      <description>&lt;p&gt;前两天在微博上，看到CSDN的创始人发了这样一条微博，内容如下&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>用微信公众号记账</title>
+      <link>http://xujimmy.com/2017/12/29/weixin-account.html</link>
+      <pubDate>Fri, 29 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/12/29/weixin-account.html</guid>
+      <description>&lt;p&gt;之前申请了个微信公众号，完成了一些小功能后，就一直没怎么玩了，由于今年下半年开始，和女票住一起了，开销骤增，于是决定开始记录下每田的开支情况，统计我们的消费习惯。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用 monitor 命令查看 redis 请求日志</title>
+      <link>http://xujimmy.com/2017/12/13/redis-request-log.html</link>
+      <pubDate>Wed, 13 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/12/13/redis-request-log.html</guid>
+      <description>&lt;p&gt;redis 是一个高性能、使用方便的非关系型数据库，我们在使用 redis 时，基本只需要关注存数据，取数据的功能，即 set，get，非常适合用作缓存服务器，降低后端数据库压力。有时，想确认下数据是否是从 redis 里读的，以及 redis 是怎么取得数据，这时就可以使用 monitor 功能了。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>HTTPS 的握手过程</title>
+      <link>http://xujimmy.com/2017/12/11/https-handshakes.html</link>
+      <pubDate>Mon, 11 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/12/11/https-handshakes.html</guid>
+      <description>&lt;p&gt;在之前 &lt;a href=&#34;https://xujimmy.com/2017/12/01/https-blog.html&#34;&gt;给博客启用 HTTPS&lt;/a&gt; 的博文中，我们知道了怎么给自己的博客开启 HTTPS，本篇简要介绍下，HTTPS 连接与 HTTP 连接的不同。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>给博客启用 HTTPS</title>
+      <link>http://xujimmy.com/2017/12/01/https-blog.html</link>
+      <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/12/01/https-blog.html</guid>
+      <description>&lt;p&gt;在几个月前，当博客放到阿里云时，就想尝试下开启 HTTPS，在尝试之前，我读了几篇启用 HTTPS 的经验文章，发现现在有了很方便的工具：&lt;a href=&#34;https://github.com/Neilpang/acme.sh&#34;&gt;acme.sh&lt;/a&gt;。基本不用你做太多额外操作，即可开启 HTTPS。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>我的书单</title>
+      <link>http://xujimmy.com/2017/11/25/books.html</link>
+      <pubDate>Sat, 25 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/11/25/books.html</guid>
+      <description>&lt;p&gt;小时候的我就特别喜欢看书，不过那时都是课外儿童读物，也包括一些科技方面的书，当时班上流行读书文化，我们有自己的圈子，常常是每人买一本书，然后交换着看，交流心得。记得小时候最喜欢的是郑渊洁的童话书，第一次看鲁西西传时，惊为神书，怎么会有这么引人入胜的故事啊，废寝忘食的看。现在想想，非常怀恋，那些儿时的书友们，你们现在还好吗？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>linux 命令之--find</title>
+      <link>http://xujimmy.com/2017/11/19/linux-find.html</link>
+      <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/11/19/linux-find.html</guid>
+      <description>&lt;p&gt;&lt;code&gt;find&lt;/code&gt;命令也是 linux 环境下使用频繁、功能强大的查找命令，基本每天的工作都会用到它，这里对&lt;code&gt;find&lt;/code&gt;命令做个总结，作为备忘&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Go语言中的数组(array)和切片(slice)</title>
+      <link>http://xujimmy.com/2017/11/15/go-arr-slice.html</link>
+      <pubDate>Wed, 15 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/11/15/go-arr-slice.html</guid>
+      <description>&lt;p&gt;刚开始学习go，里面有两个类型，常常容易让人弄混：array和slice，这里对这两个类型做个总结&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>写在回京之前</title>
+      <link>http://xujimmy.com/2017/11/02/back-to-beijing.html</link>
+      <pubDate>Thu, 02 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/11/02/back-to-beijing.html</guid>
+      <description>&lt;p&gt;东西都已经打包好了，马上要离开武汉，返回北京，想想这几个月在武汉的生活和工作，可以用碌碌无为来形容&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>一道面试题：随机洗牌法和蓄水池算法</title>
+      <link>http://xujimmy.com/2017/10/15/shuffle.html</link>
+      <pubDate>Sun, 15 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/10/15/shuffle.html</guid>
+      <description>&lt;p&gt;面试时，遇到这么一个问题，觉得比较有意思，可惜我答得不好，特记录下。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>php-fpm 子进程的数量，是越大越好吗？</title>
+      <link>http://xujimmy.com/2017/10/11/fpm-conf.html</link>
+      <pubDate>Wed, 11 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/10/11/fpm-conf.html</guid>
+      <description>&lt;p&gt;我们知道，在 Linux 环境下，处理php脚本的进程是&lt;code&gt;php-fpm&lt;/code&gt;。&lt;code&gt;php-fpm&lt;/code&gt;的允许方式有两种：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;static ：表示在 &lt;code&gt;php-fpm&lt;/code&gt; 运行时直接 &lt;code&gt;fork&lt;/code&gt; 出 &lt;code&gt;pm.max_chindren&lt;/code&gt; 个子进程，&lt;/li&gt;
+&lt;li&gt;dynamic：表示，运行时 &lt;code&gt;fork&lt;/code&gt; 出 &lt;code&gt;start_servers&lt;/code&gt; 个进程，随着负载的情况，动态的调整，最多不超过 &lt;code&gt;max_children&lt;/code&gt; 个进程。&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>有一条查询很慢的sql语句，怎么优化它</title>
+      <link>http://xujimmy.com/2017/09/20/slow-mysql.html</link>
+      <pubDate>Wed, 20 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/09/20/slow-mysql.html</guid>
+      <description>&lt;p&gt;做服务端或后台岗位面试时，有些面试官会问这样的一个问题：有一条sql语句很慢，怎么去优化它。这个问题很有难度，能很好考察求职者对于mysql掌握的程度，以及思考问题的广度。此问题也没有标准的答案，答得越多越好。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>由 lnmp 一键安装脚本所引发的错误</title>
+      <link>http://xujimmy.com/2017/09/12/lnmp-debug.html</link>
+      <pubDate>Tue, 12 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/09/12/lnmp-debug.html</guid>
+      <description>&lt;p&gt;在装&lt;a href=&#34;https://lnmp.org/&#34;&gt;lnmp&lt;/a&gt;全家桶时，有时为了方便，会直接用一键安装脚本，一条命令，就把所有的环境都装好了，简单省事，但有时出现配置错误，也不太好排查，分享一个遇到的问题。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>TCP 和 HTTP</title>
+      <link>http://xujimmy.com/2017/09/10/tcp-http.html</link>
+      <pubDate>Sun, 10 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/09/10/tcp-http.html</guid>
+      <description>&lt;p&gt;在经典的计算机网络 ISO 七层模型中，最接近用户的，是应用层，其次是传输层。应用层中，HTTP 是最重要的协议之一，而 TCP，则是传输层中最重要的协议之一，这两类协议可以说是现代互联网的基石。无论是组网，编码，网络故障定位，面试，这两类协议都是相当重要的，网上已经有很多相关的分析文章，这里也整理下我关于这两个协议的相关理解。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>当你在浏览器中输入网址，到看到网页，发生了什么</title>
+      <link>http://xujimmy.com/2017/09/10/http.html</link>
+      <pubDate>Sun, 10 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/09/10/http.html</guid>
+      <description>&lt;p&gt;这是一道经典的面试题，不光是前端面试会问到，后端也会，此题没有标准的答案，但在你了解的范围内，当然是答得越详细越好，这里就简单记录下几个关键流程吧。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>手动编译安装nginx</title>
+      <link>http://xujimmy.com/2017/08/20/install-nginx.html</link>
+      <pubDate>Sun, 20 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/08/20/install-nginx.html</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://nginx.org/&#34;&gt;Nginx&lt;/a&gt;是一个高性能的HTTP和反向代理服务器，目前已经成为Web开发部署的标配了，基本拿到一台机器或者vps，都要装上nginx，但由于很多Linux发行版的包管理里面的源没有nginx，导致用&lt;code&gt;yum&lt;/code&gt;或者&lt;code&gt;apt&lt;/code&gt;都无法安装，需要手动配置，这里记录两种方法安装nginx&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>微信公众号开发初探</title>
+      <link>http://xujimmy.com/2017/08/11/weixin-dev.html</link>
+      <pubDate>Fri, 11 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/08/11/weixin-dev.html</guid>
+      <description>&lt;p&gt;最近利用空闲时间，申请了个微信公众号，完成一些小功能练练手，本文总结下开发公众号期间的一些步骤，心得和体会吧。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用 zsh，重新打造你的 Linux 工作环境</title>
+      <link>http://xujimmy.com/2017/06/20/linux-zsh.html</link>
+      <pubDate>Tue, 20 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/06/20/linux-zsh.html</guid>
+      <description>&lt;p&gt;对于经常在 Linux 环境下干活的码农们，shell 可以说是我们使用频率最高的程序了，shell 为我们和机器间建立了一个桥梁，它给我们提供一系列命令，我们就可以和机器进行愉快的交流了，比如写代码用&lt;code&gt;vim&lt;/code&gt;命令，查找文件使用&lt;code&gt;find`,&lt;/code&gt;grep&lt;code&gt;命令，版本控制使用&lt;/code&gt;git&lt;code&gt;，查看机器性能使用&lt;/code&gt;top`，bash 就是 shell 的一种，也是 Linux 下的默认 shell 程序，现在让我们使用 zsh，重新打造一个更加人性化的 shell&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>dokcer的一些使用方法</title>
+      <link>http://xujimmy.com/2017/04/10/docker.html</link>
+      <pubDate>Mon, 10 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/04/10/docker.html</guid>
+      <description>&lt;p&gt;上半年也陆续使用了docker工具做开发部署，使用的经验还比较浅显，看到屈屈大神写的一篇文章不错，特转载过来，并加了点自己的心得&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>几条比较好用又经常忘记的 shell 命令</title>
+      <link>http://xujimmy.com/2017/01/16/linux-command.html</link>
+      <pubDate>Mon, 16 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/01/16/linux-command.html</guid>
+      <description>&lt;p&gt;linux命令行中，最常用的命令就那么几条，有时写了长长的一条命令，发现写错、漏写，想移动光标，如果直接按←，→，不仅慢，还不能体现出我们作为linux老鸟的优（zhuang）雅（bi），因此记下几个比较好用的命令，以作备忘&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>关于 Cookie 和 Session 的几点问题</title>
+      <link>http://xujimmy.com/2017/01/11/cookie-session.html</link>
+      <pubDate>Wed, 11 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/01/11/cookie-session.html</guid>
+      <description>&lt;p&gt;咱做 web 开发的，任何时候都少不了要和 Cookie 以及 Session 打交道，我们平时主要用他们来实现用户的登陆和用户的信息存储。说到 Cookie 和 Session，我们一般会很简单地想到他们一个是客户端的存储机制，一个是服务器端的存储机制。然而，事实是否真的仅仅是这样的呢？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>PHP中的自动加载</title>
+      <link>http://xujimmy.com/2017/01/08/php-autoload.html</link>
+      <pubDate>Sun, 08 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/01/08/php-autoload.html</guid>
+      <description>&lt;p&gt;对于21世纪的phper来说，应该或多或少听说过&lt;strong&gt;自动加载器&lt;/strong&gt;。自动加载，就是我们在new一个class前，不需要写require来包含这个class文件，由程序自动帮我们加载进来。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>PHP中的依赖注入是什么东西</title>
+      <link>http://xujimmy.com/2017/01/02/php-di.html</link>
+      <pubDate>Mon, 02 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/01/02/php-di.html</guid>
+      <description>&lt;p&gt;设计模式中，有一个叫控制反转（Inversion of Control），也叫依赖注入(Dependency Injection)，这种设计模式用来减少程序间的耦合，这篇文章不讲解概念性的东西，直接上代码，如果要深追理论，要看设计模式一书&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>influxdb配合grafana的监控</title>
+      <link>http://xujimmy.com/2016/12/21/influxdb-grafana.html</link>
+      <pubDate>Wed, 21 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2016/12/21/influxdb-grafana.html</guid>
+      <description>&lt;p&gt;在大型公司，对于监管众多服务器的资源使用情况，是一项不可或缺的工作，随时了解每个服务器的运行状态，负载情况，对于发现线上问题，有着重要的参考价值。对于线上服务，监控和了解集群的工作状况，也是必不可少的环节。在机器监控方面，新兴的influxdb配合grafana，有如倚天屠龙，简单又好用。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>linux命令之--awk</title>
+      <link>http://xujimmy.com/2016/11/16/linux-awk.html</link>
+      <pubDate>Wed, 16 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2016/11/16/linux-awk.html</guid>
+      <description>&lt;p&gt;&lt;code&gt;awk&lt;/code&gt;命令是一个强大的文本分析工具，相对于grep的查找，sed的编辑，awk在其对数据分析并生成报告时，显得尤为强大。简单来说awk就是把文件逐行的读入，以空格为默认分隔符将每行切片，切开的部分再进行各种分析处理。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>linux命令之--grep</title>
+      <link>http://xujimmy.com/2016/11/16/linux-grep.html</link>
+      <pubDate>Wed, 16 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2016/11/16/linux-grep.html</guid>
+      <description>&lt;p&gt;&lt;code&gt;grep&lt;/code&gt;命令是linux环境下使用频繁、功能强大的查找命令，基本每天的工作都会用到它，这里对grep命令做个总结，作为备忘&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>让你的 git 命令简化起来</title>
+      <link>http://xujimmy.com/2016/10/18/git-alias.html</link>
+      <pubDate>Tue, 18 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2016/10/18/git-alias.html</guid>
+      <description>&lt;p&gt;对于写代码的搬砖工来说，版本控制软件是日常工作中必不可少的工具。git 由于其强大的分布式管理、以及快速在版本间穿梭的功能，大有取代 svn 的趋势。对于使用 svn 的老一辈码农来说，那么怎么快速从 svn 切换到 git 呢？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>求两个文件的交集，并集，差集</title>
+      <link>http://xujimmy.com/2016/10/11/linux-sort.html</link>
+      <pubDate>Tue, 11 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2016/10/11/linux-sort.html</guid>
+      <description>&lt;p&gt;在 Linux下，有两个文件，分别记录了很多 ip 地址，怎么求得在两个文件中都出现的 ip？以及所有的不重复的 ip？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>用PhantomJS抓取js渲染的网页</title>
+      <link>http://xujimmy.com/2016/08/22/python-phantomjs.html</link>
+      <pubDate>Mon, 22 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2016/08/22/python-phantomjs.html</guid>
+      <description>&lt;p&gt;在用python抓取网页时，一般情况下，用urllib2，requests等库差不多够用，但是有的页面里的某些div里的元素，是由js动态渲染，或者某些div，是在window页面滑到该区域才开始加载的。对于这种网页，你直接抓取然后审查页面信息，会看到div为空，或者div的内容为”加载中…”。
+那么怎么抓取这类动态页面呢，在window下，可以使用selenium，但在Linux平台，就需要用PhantomJS配合selenium来完成了。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>由 daemon 账户到 ssh 免密登录的一点思考</title>
+      <link>http://xujimmy.com/2016/08/12/ssh-monitor.html</link>
+      <pubDate>Fri, 12 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2016/08/12/ssh-monitor.html</guid>
+      <description>&lt;p&gt;最近项目上遇到一个这样的场景：
+在A服务器上，我有一个监控脚本monitor.py，可以用来监控远程服务器的资源消耗情况，比如CPU,内存,IO等信息。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>用正则方式批量删除 redis 里的 key</title>
+      <link>http://xujimmy.com/2016/08/11/linux-xargs-redis.html</link>
+      <pubDate>Thu, 11 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2016/08/11/linux-xargs-redis.html</guid>
+      <description>&lt;p&gt;redis 里面有一批没用的 key，这些 key 以 test_开头，要求删掉这些key，在命令行中没法删除，可以写个脚本，一个一个删，也可以用下面 xargs 命令的方式&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MYSQL 中的 JOIN</title>
+      <link>http://xujimmy.com/2016/08/02/mysql-join.html</link>
+      <pubDate>Tue, 02 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2016/08/02/mysql-join.html</guid>
+      <description>&lt;p&gt;在我们写 SQL 语句时，会用到多表联合查询，这时就需要用到 JOIN 关键字了，本文用图来看下 MYSQL 中几种 JOIN 的区别。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>关于redis使用总结</title>
+      <link>http://xujimmy.com/2016/08/02/redis.html</link>
+      <pubDate>Tue, 02 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2016/08/02/redis.html</guid>
+      <description>&lt;p&gt;最近的项目一直在使用 redis，在参考前人文章的基础上，本文也对 redis 的使用做一个简单的归纳总结。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>python 用 gevent 协程抓取海量网页</title>
+      <link>http://xujimmy.com/2016/05/17/python-gevent.html</link>
+      <pubDate>Tue, 17 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2016/05/17/python-gevent.html</guid>
+      <description>&lt;p&gt;python作为爬虫利器，抓网页的方式简洁明了。爬成百上千的网页，都可以很快爬完，但是如果网页数量上万呢？速度就不能忍受了。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://xujimmy.com/1/01/01.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/1/01/01.html</guid>
+      <description>&lt;p&gt;title: 本博客的一些插件和使用方法
+tags:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;hexo&lt;/li&gt;
+&lt;li&gt;maupassant&lt;/li&gt;
+&lt;li&gt;配置&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;categories:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Tech
+date: 2018-01-06 09:14:00&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;用hexo写博客已经有一段时间了，这里把本博客的一些觉得有意思的插件和优化整理出来，方便新手配置和学习。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://xujimmy.com/1/01/01.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/1/01/01.html</guid>
+      <description>&lt;p&gt;title: 关于 vps 和 shadowsocks 梯子
+tags:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;vps&lt;/li&gt;
+&lt;li&gt;shadowsocks&lt;/li&gt;
+&lt;li&gt;bbr&lt;/li&gt;
+&lt;li&gt;云计算
+categories:&lt;/li&gt;
+&lt;li&gt;Tech
+date: 2018-01-20 11:20:00&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;近几年国内互联网“整风运动”愈演愈烈，各种翻墙服务都相继倒下，走丢的国外网站和服务也一个接一个，好在公司可以随意访问 Google，而回到家里，就没法用了，因此，为了科学上网，迫切需要有新的梯子，去看看外面的世界。俗话说，授人以鱼不如授人以渔，与其找梯子，不如自己建梯子。国外的 vps 给我们提供了一个理想的建梯子环境。本文使用亚马逊的 EC2 vps，使用著名的 shadowsocks 来自建一个梯子。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

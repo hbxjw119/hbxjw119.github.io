@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>grep on JimmyXu的小站</title>
+    <link>http://xujimmy.com/tags/grep.html</link>
+    <description>Recent content in grep on JimmyXu的小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 16 Nov 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://xujimmy.com/tags/grep/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>linux命令之--grep</title>
+      <link>http://xujimmy.com/2016/11/16/linux-grep.html</link>
+      <pubDate>Wed, 16 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2016/11/16/linux-grep.html</guid>
+      <description>&lt;p&gt;&lt;code&gt;grep&lt;/code&gt;命令是linux环境下使用频繁、功能强大的查找命令，基本每天的工作都会用到它，这里对grep命令做个总结，作为备忘&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

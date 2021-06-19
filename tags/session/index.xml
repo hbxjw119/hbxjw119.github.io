@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Session on JimmyXu的小站</title>
+    <link>http://xujimmy.com/tags/session.html</link>
+    <description>Recent content in Session on JimmyXu的小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 11 Jan 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://xujimmy.com/tags/session/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>关于 Cookie 和 Session 的几点问题</title>
+      <link>http://xujimmy.com/2017/01/11/cookie-session.html</link>
+      <pubDate>Wed, 11 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/01/11/cookie-session.html</guid>
+      <description>&lt;p&gt;咱做 web 开发的，任何时候都少不了要和 Cookie 以及 Session 打交道，我们平时主要用他们来实现用户的登陆和用户的信息存储。说到 Cookie 和 Session，我们一般会很简单地想到他们一个是客户端的存储机制，一个是服务器端的存储机制。然而，事实是否真的仅仅是这样的呢？&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

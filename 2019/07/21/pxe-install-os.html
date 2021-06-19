@@ -1,70 +1,710 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="记录个人的工作，生活，感悟..."><title>使用 PXE 从网络安装操作系统 | JimmyXu的小站</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.9.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/7.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">使用 PXE 从网络安装操作系统</h1><a id="logo" href="/.">JimmyXu的小站</a><p class="description">inner peace</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/study/"><i class="fa fa-book"> 宝典</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">使用 PXE 从网络安装操作系统</h1><div class="post-meta">2019 年 07 月 21 日<span> | </span><span class="category"><a href="/categories/Tech/">Tech</a></span><span> | </span><span><i class="fa fa-file-word-o"></i></span><span class="post-count"> 3.3k 字</span><span> | </span><span><i class="fa fa-clock-o"></i></span><span class="post-count"> 阅读约需 12 分钟</span></div><div class="post-content"><p>平时我们拿到一台新电脑后，第一件事就是安装操作系统，安装系统常规方式是用光盘或 U 盘，需要提前在 BIOS 里设置引导顺序，让 CDROM 或 U 盘为第一引导项，重启后就可以走安装系统流程了，安装过程中还需要手动设置一些选项，如设置时区，硬盘分区等。等安装完后，再设置 BIOS 从硬盘启动，系统就算安装好了。这是家庭或电脑店里的常规方式。试想下，企业采购一批服务器，100 台甚至上千台，如果仍然采用这种方式，那运维得累死。这时，我们可以采用 PXE 方式，从网络给服务器安装系统。</p>
-<a id="more"></a>
-<h2 id="什么是-PXE"><a href="#什么是-PXE" class="headerlink" title="什么是 PXE"></a>什么是 PXE</h2><p>这里我不打算把维基百科中的概念性语言搬到这里，我们只需要知道，<strong>PXE 也是一种装机技术，唯一和平时装机方式不同的地方是，PXE 使用的系统镜像和内核，不是放在光盘和 U 盘里，而是放在了远端网络上，装机过程中，PXE 会自动从远端下载文件到本地，然后完成系统安装。</strong><br>更重要的是，它可以在远端 ks 文件的指导下，完成无人值守，自动设置，自动装机。因此，企业中大部分都会采用这种方式来进行批量装机。</p>
-<h2 id="需要准备哪些东西"><a href="#需要准备哪些东西" class="headerlink" title="需要准备哪些东西"></a>需要准备哪些东西</h2><p>原理知道了，但具体需要哪些准备条件呢？既然是从网络引导安装，那么至少具备：</p>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+
+    <title>使用 PXE 从网络安装操作系统 | JimmyXu的小站</title>
+    <meta property="og:title" content="使用 PXE 从网络安装操作系统 - JimmyXu的小站">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2019-07-21T16:12:40&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2019-07-21T16:12:40&#43;08:00'>
+        
+    <meta name="Keywords" content="博客,Web,软件,互联网">
+    <meta name="description" content="使用 PXE 从网络安装操作系统">
+        
+    <meta name="author" content="JimmyXu">
+    <meta property="og:url" content="http://xujimmy.com/2019/07/21/pxe-install-os.html">
+    <link rel="shortcut icon" href='/favicon.ico'  type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    
+    
+        <link href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" rel="stylesheet">
+    
+    
+    
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://xujimmy.com">
+                        JimmyXu的小站
+                    </a>
+                
+                <p class="description">inner peace</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="http://xujimmy.com">首页</a>
+                    
+                    <a  href="http://xujimmy.com/archives.html" title="归档">归档</a>
+                    
+                    <a  href="http://xujimmy.com/about.html" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    <style type="text/css">
+    .post-toc {
+        position: fixed;
+        width: 200px;
+        margin-left: -210px;
+        padding: 5px 10px;
+        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+        font-size: 12px;
+        border: 1px solid rgba(0, 0, 0, .07);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.98);
+        background-clip: padding-box;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        word-wrap: break-word;
+        white-space: nowrap;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 999;
+        cursor: pointer;
+        max-height: 70%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .post-toc .post-toc-title {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .post-toc .post-toc-content {
+        font-size: 15px;
+    }
+
+    .post-toc .post-toc-content>nav>ul {
+        margin: 10px 0;
+    }
+
+    .post-toc .post-toc-content ul {
+        padding-left: 20px;
+        list-style: square;
+        margin: 0.5em;
+        line-height: 1.8em;
+    }
+
+    .post-toc .post-toc-content ul ul {
+        padding-left: 15px;
+        display: none;
+    }
+
+    @media print,
+    screen and (max-width:1057px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+<div class="post-toc" style="position: absolute; top: 188px;">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#-pxe">什么是 PXE</a></li>
+    <li><a href="#heading">需要准备哪些东西</a></li>
+    <li><a href="#heading1">开始安装</a>
+      <ul>
+        <li><a href="#heading2">注意事项</a></li>
+        <li><a href="#heading3">步骤</a></li>
+      </ul>
+    </li>
+    <li><a href="#ks-">ks 自动安装</a></li>
+    <li><a href="#heading4">裸金属服务器</a></li>
+    <li><a href="#heading5">总结</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postToc = $(".post-toc");
+        if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if(leftPos<220){
+                postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})
+            }
+
+            var t = postToc.offset().top - 20,
+                a = {
+                    start: {
+                        position: "absolute",
+                        top: t
+                    },
+                    process: {
+                        position: "fixed",
+                        top: 20
+                    },
+                };
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                e < t ? postToc.css(a.start) : postToc.css(a.process)
+            })
+        }
+    })
+</script>
+    <article class="post">
+        <header>
+            <h1 class="post-title">使用 PXE 从网络安装操作系统</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2019年7月21日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='/categories/tech'>Tech</a></span>
+            
+        </div>
+        
+        
+        
+                    <span class="post-meta">| 3638 字</span><span class="post-meta"> | 阅读约 8 分钟</span>
+            
+        
+        <div class="post-content">
+            <p>平时我们拿到一台新电脑后，第一件事就是安装操作系统，安装系统常规方式是用光盘或 U 盘，需要提前在 BIOS 里设置引导顺序，让 CDROM 或 U 盘为第一引导项，重启后就可以走安装系统流程了，安装过程中还需要手动设置一些选项，如设置时区，硬盘分区等。等安装完后，再设置 BIOS 从硬盘启动，系统就算安装好了。这是家庭或电脑店里的常规方式。试想下，企业采购一批服务器，100 台甚至上千台，如果仍然采用这种方式，那运维得累死。这时，我们可以采用 PXE 方式，从网络给服务器安装系统。</p>
+<h2 id="-pxe">什么是 PXE</h2>
+<p>这里我不打算把维基百科中的概念性语言搬到这里，我们只需要知道，<strong>PXE 也是一种装机技术，唯一和平时装机方式不同的地方是，PXE 使用的系统镜像和内核，不是放在光盘和 U 盘里，而是放在了远端网络上，装机过程中，PXE 会自动从远端下载文件到本地，然后完成系统安装。</strong>
+更重要的是，它可以在远端 ks 文件的指导下，完成无人值守，自动设置，自动装机。因此，企业中大部分都会采用这种方式来进行批量装机。</p>
+<h2 id="heading">需要准备哪些东西</h2>
+<p>原理知道了，但具体需要哪些准备条件呢？既然是从网络引导安装，那么至少具备：</p>
 <ul>
 <li>远端必须得有个存放系统镜像以及一些装机所需文件的服务器，并且提供下载服务</li>
 <li>设置本地机器从网络引导</li>
 <li>本地机器必须具备 IP，以便从远端下载文件到本地</li>
 </ul>
 <p>第一个条件很好具备，拿一台机器起个 nginx 或 ftp 服务就好了。在 PXE 装机环境下，这个服务器被称为部署服务器（pxe server）。</p>
-<p>第二个问题可以直接进 BIOS 设置，但如果要装机的数量庞大，也得累死。更通用的方式是通过机器的 IPMI 设备进行设置，IPMI 是一个通用接口标准，最重要的就是 BMC（Baseboard Management Controller），它是主板上的一块芯片，独立于 BIOS 和 OS ，并且可以配置 IP，通过这个 IP 可以对计算机进行远程控制，比如通电，断电，重启，设置引导项，查看计算机部件的物理信息，如 CPU 核数，甚至风扇温度等。BMC 配的这个 IP 我们称为<strong>带外 IP</strong>，看下面示意图。<br><img src="/images/pxe/bmc.png" alt="计算机上的bmc设备"><br>使用方式也很简单，一般服务器厂商都会给 IPMI 配置一个简单的 UI，直接在浏览器里输入带外 IP 即可打开。或者<code>yum install ipmitool</code>，这是 shell 环境下的一个 IPMI 管理工具，自带基本命令。假设机器的带外 IP 是 10.0.0.1，端口为 623，登录账号密码都为 admin，常用命令如下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打开机器电源</span></span><br><span class="line">ipmitool -I lanplus -H 10.0.0.1 -p 623 -U admin -P admin power On</span><br><span class="line"><span class="comment"># 关闭电源</span></span><br><span class="line">ipmitool -I lanplus -H 10.0.0.1 -p 623 -U admin -P admin power Off</span><br><span class="line"><span class="comment"># 重启机器</span></span><br><span class="line">ipmitool -I lanplus -H 10.0.0.1 -p 623 -U admin -P admin power reset</span><br><span class="line"><span class="comment"># 设置第一引导方式为 pxe</span></span><br><span class="line">ipmitool -I lanplus -H 10.0.0.1 -p 623 -U admin -P admin chassis bootdev pxe</span><br></pre></td></tr></table></figure><br>带外 IP 非常有用，很大程度上避免了需要去机房人肉操作的麻烦，比如线上一台物理机宕机，系统崩溃需要重启，打电话喊人进机房按重启键就太原始了，直接通过带外 IP，发条 reset 命令就可以重启了。</p>
-<p>第三个问题看似不是什么问题，但不要忘了，在一个还没有装系统的机器上，是没有 IP 的，也没地方让你去执行 wget 之类的下载命令。<br>但每台机器上都有网卡设备，网卡有 mac 地址，我们可以在部署服务器上，起一个 DHCP 服务，让本地网卡发 DHCP 广播，部署服务器收到后，给本地机器网卡分配一个 IP。DHCP 工作原理大家可以翻大学的计算机网络，或者自行查看维基百科。这过程就像我们回到家里，手机自动连到家里 WIFI 一样，因为家里的路由器有 DHCP 服务，它帮手机自动分配了 IP，所以就可以上网了。自动分配 IP 的好处就是简单，免去人工配置，而且绝对不会有 IP 冲突。如果是手动配，效率低不说，还必须知道已经分了哪些 IP，避免再分配相同的 IP。但自动分配 IP 的弊端是，它分配的 IP 是临时的，比如今天给你手机分配的 IP 是 192.168.1.3，明天回来，给你分的可能就是 192.168.1.5 了。但只要你一直用，保持 WIFI 不断开，那这个 IP 也就不会变。在 PXE 装机环境中，总是会有个 DHCP 服务，由它给这个网络中的网卡分配 IP，为了节省，直接在部署服务器上起 DHCP 服务即可。</p>
+<p>第二个问题可以直接进 BIOS 设置，但如果要装机的数量庞大，也得累死。更通用的方式是通过机器的 IPMI 设备进行设置，IPMI 是一个通用接口标准，最重要的就是 BMC（Baseboard Management Controller），它是主板上的一块芯片，独立于 BIOS 和 OS ，并且可以配置 IP，通过这个 IP 可以对计算机进行远程控制，比如通电，断电，重启，设置引导项，查看计算机部件的物理信息，如 CPU 核数，甚至风扇温度等。BMC 配的这个 IP 我们称为<strong>带外 IP</strong>，看下面示意图。
+<img src="/images/pxe/bmc.png" alt="计算机上的bmc设备">
+使用方式也很简单，一般服务器厂商都会给 IPMI 配置一个简单的 UI，直接在浏览器里输入带外 IP 即可打开。或者<code>yum install ipmitool</code>，这是 shell 环境下的一个 IPMI 管理工具，自带基本命令。假设机器的带外 IP 是 10.0.0.1，端口为 623，登录账号密码都为 admin，常用命令如下</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 打开机器电源</span>
+ipmitool -I lanplus -H 10.0.0.1 -p <span style="color:#ae81ff">623</span> -U admin -P admin power On
+<span style="color:#75715e"># 关闭电源</span>
+ipmitool -I lanplus -H 10.0.0.1 -p <span style="color:#ae81ff">623</span> -U admin -P admin power Off
+<span style="color:#75715e"># 重启机器</span>
+ipmitool -I lanplus -H 10.0.0.1 -p <span style="color:#ae81ff">623</span> -U admin -P admin power reset
+<span style="color:#75715e"># 设置第一引导方式为 pxe</span>
+ipmitool -I lanplus -H 10.0.0.1 -p <span style="color:#ae81ff">623</span> -U admin -P admin chassis bootdev pxe
+</code></pre></div><p>带外 IP 非常有用，很大程度上避免了需要去机房人肉操作的麻烦，比如线上一台物理机宕机，系统崩溃需要重启，打电话喊人进机房按重启键就太原始了，直接通过带外 IP，发条 reset 命令就可以重启了。</p>
+<p>第三个问题看似不是什么问题，但不要忘了，在一个还没有装系统的机器上，是没有 IP 的，也没地方让你去执行 wget 之类的下载命令。
+但每台机器上都有网卡设备，网卡有 mac 地址，我们可以在部署服务器上，起一个 DHCP 服务，让本地网卡发 DHCP 广播，部署服务器收到后，给本地机器网卡分配一个 IP。DHCP 工作原理大家可以翻大学的计算机网络，或者自行查看维基百科。这过程就像我们回到家里，手机自动连到家里 WIFI 一样，因为家里的路由器有 DHCP 服务，它帮手机自动分配了 IP，所以就可以上网了。自动分配 IP 的好处就是简单，免去人工配置，而且绝对不会有 IP 冲突。如果是手动配，效率低不说，还必须知道已经分了哪些 IP，避免再分配相同的 IP。但自动分配 IP 的弊端是，它分配的 IP 是临时的，比如今天给你手机分配的 IP 是 192.168.1.3，明天回来，给你分的可能就是 192.168.1.5 了。但只要你一直用，保持 WIFI 不断开，那这个 IP 也就不会变。在 PXE 装机环境中，总是会有个 DHCP 服务，由它给这个网络中的网卡分配 IP，为了节省，直接在部署服务器上起 DHCP 服务即可。</p>
 <blockquote>
 <p>需要注意的是，一个 PXE 装机网络中，只能有一个 DHCP 服务，这是由 DHCP 工作原理决定的。如果有多个 DHCP，会导致 IP 分配失败。</p>
 </blockquote>
-<h2 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h2><p>上面的问题都有解答，可以来实际操作了，条件所限，本文使用 VirtualBox 来搭建 PXE 装机环境，所以没有真实的 IPMI 设备，但好在 VirtualBox 可以设置让 VM 从网络启动，因此不影响效果。<br>我们需要至少两个 VM，一个作为 pxe server，一个作为 client 待装系统。先来看下 PXE 装机流程图<br><img src="/images/pxe/pxe-boot.png" alt="PXE 装机流程"><br>可以看到，整个过程大致可分两步</p>
+<h2 id="heading1">开始安装</h2>
+<p>上面的问题都有解答，可以来实际操作了，条件所限，本文使用 VirtualBox 来搭建 PXE 装机环境，所以没有真实的 IPMI 设备，但好在 VirtualBox 可以设置让 VM 从网络启动，因此不影响效果。
+我们需要至少两个 VM，一个作为 pxe server，一个作为 client 待装系统。先来看下 PXE 装机流程图
+<img src="/images/pxe/pxe-boot.png" alt="PXE 装机流程">
+可以看到，整个过程大致可分两步</p>
 <ol>
 <li>client 端申请 IP，这是执行后续步骤的先决条件</li>
 <li>client 在指定目录拉取内核和必要的装机文件</li>
 </ol>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>必须得确保这两个 VM 所在的网络中，只有 pxe server 提供 DHCP 服务，如果你选择桥接模式，即 VM 和宿主机在同一个网络，那么得保证这个网络中没有其他 DHCP 服务，如果你在家里装，需要关掉家里路由器上的 DHCP；如果是在公司办公网装，那就得谨慎了，办公网的网络配置一般不能由自己规划，一不小心，可能导致办公网瘫痪，但可以用 VirtualBox 的内部网络，即 VM 和宿主机网络隔离，VM 之前互通，那么这天然就是一个良好的装机环境，但这种情况下，VM 是没法通外网的，要装一些包就很麻烦，要么让 VM 和宿主机共享一个目录，把包导入到 VM，要么先把 VM 设为桥接模式通外网，把需要的包装好后再设为内部网络模式。为了方便，下文用家庭桥接模式，网络拓扑如下<br><img src="/images/pxe/network-top.png" alt="PXE 装机网络拓扑"></p>
-<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ul>
+<h3 id="heading2">注意事项</h3>
+<p>必须得确保这两个 VM 所在的网络中，只有 pxe server 提供 DHCP 服务，如果你选择桥接模式，即 VM 和宿主机在同一个网络，那么得保证这个网络中没有其他 DHCP 服务，如果你在家里装，需要关掉家里路由器上的 DHCP；如果是在公司办公网装，那就得谨慎了，办公网的网络配置一般不能由自己规划，一不小心，可能导致办公网瘫痪，但可以用 VirtualBox 的内部网络，即 VM 和宿主机网络隔离，VM 之前互通，那么这天然就是一个良好的装机环境，但这种情况下，VM 是没法通外网的，要装一些包就很麻烦，要么让 VM 和宿主机共享一个目录，把包导入到 VM，要么先把 VM 设为桥接模式通外网，把需要的包装好后再设为内部网络模式。为了方便，下文用家庭桥接模式，网络拓扑如下
+<img src="/images/pxe/network-top.png" alt="PXE 装机网络拓扑"></p>
+<h3 id="heading3">步骤</h3>
+<ul>
 <li>准备 CentOS 的 ISO 安装包，创建一个 centOS 的 VM，设置网络为桥接模式，装好系统，作为 pxe server，暂称为 A，假设其 IP 为 192.168.1.5。装完后，将 ISO 安装包从宿主机传到 A 某目录，如 /tmp，后面需要用。</li>
-<li>安装 dnsmasq，用来提供 DHCP 服务。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install dnsmasq </span><br></pre></td></tr></table></figure>
- 将原来的 /etc/dnsmasq.conf 备份，重新生成一个配置，内容如下：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 网卡名，这里根据你的网卡填写</span></span><br><span class="line">interface=eth0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 固定</span></span><br><span class="line">dhcp-boot=pxelinux.0</span><br><span class="line">port=0</span><br><span class="line">enable-tftp</span><br><span class="line">tftp-root=/var/lib/tftpboot/</span><br><span class="line">log-facility=/var/<span class="built_in">log</span>/dnsmasq.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># dhcp 分配的 ip 范围</span></span><br><span class="line">dhcp-range=192.168.1.100,192.168.1.110</span><br><span class="line"><span class="comment"># netmask</span></span><br><span class="line">dhcp-option=1,255.255.255.0</span><br><span class="line"><span class="comment"># DNS</span></span><br><span class="line">dhcp-option=6,233.5.5.5,8.8.8.8</span><br></pre></td></tr></table></figure></li>
-<li>安装 syslinux，tftp-server，vsftpd 提供内核和镜像下载服务<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install syslinux, tftp-server, vsftpd</span><br></pre></td></tr></table></figure>
-拷贝相关文件<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp -r /usr/share/syslinux/* /var/lib/tftpboot</span><br></pre></td></tr></table></figure></li>
-<li>生成必要的目录和文件，上面的 dnsmasq 配置会从这里读取<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir /var/lib/tftpboot/pxelinux.cfg</span><br><span class="line">mkdir /var/lib/tftpboot/centos7</span><br><span class="line">touch /var/lib/tftpboot/pxelinux.cfg/default</span><br></pre></td></tr></table></figure>
-default 文件内容为：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">default menu</span><br><span class="line">prompt 0</span><br><span class="line">label pxe</span><br><span class="line">kernel centos7/vmlinuz</span><br><span class="line">append initrd=centos7/initrd.img method=ftp://192.168.1.5/pub</span><br></pre></td></tr></table></figure>
-注意上面的 IP 地址为 pxe server 的 IP</li>
-<li>挂载 ISO 文件，拷贝内核文件和镜像到指定目录<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mount -o loop /tmp/centos-dvd.iso  /mnt </span><br><span class="line">cp /mnt/images/pxeboot/vmlinuz  /var/lib/tftpboot/centos7</span><br><span class="line">cp /mnt/images/pxeboot/initrd.img  /var/lib/tftpboot/centos7</span><br><span class="line">cp -r /mnt/* /var/ftp/pub/</span><br><span class="line">chmod -R 755 /var/ftp/pub</span><br></pre></td></tr></table></figure></li>
-<li>启动所有服务<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">systemctl start dnsmasq</span><br><span class="line">systemctl start vsftpd</span><br><span class="line">systemctl <span class="built_in">enable</span> dnsmasq</span><br><span class="line">systemctl <span class="built_in">enable</span> vsftpd</span><br></pre></td></tr></table></figure>
-ps 命令查看进程，确保上述服务都已经启动，并能从浏览器能访问到 ftp 中的文件，如果没法访问，查看是否因为防火墙的原因。到这一步 pxe server 就准备好了。</li>
+<li>安装 dnsmasq，用来提供 DHCP 服务。</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">yum install dnsmasq 
+</code></pre></div><p>将原来的 /etc/dnsmasq.conf 备份，重新生成一个配置，内容如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 网卡名，这里根据你的网卡填写</span>
+interface<span style="color:#f92672">=</span>eth0
+
+<span style="color:#75715e"># 固定</span>
+dhcp-boot<span style="color:#f92672">=</span>pxelinux.0
+port<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+enable-tftp
+tftp-root<span style="color:#f92672">=</span>/var/lib/tftpboot/
+log-facility<span style="color:#f92672">=</span>/var/log/dnsmasq.log
+
+<span style="color:#75715e"># dhcp 分配的 ip 范围</span>
+dhcp-range<span style="color:#f92672">=</span>192.168.1.100,192.168.1.110
+<span style="color:#75715e"># netmask</span>
+dhcp-option<span style="color:#f92672">=</span>1,255.255.255.0
+<span style="color:#75715e"># DNS</span>
+dhcp-option<span style="color:#f92672">=</span>6,233.5.5.5,8.8.8.8
+</code></pre></div><ul>
+<li>安装 syslinux，tftp-server，vsftpd 提供内核和镜像下载服务</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">yum install syslinux, tftp-server, vsftpd
+</code></pre></div><p>拷贝相关文件</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cp -r /usr/share/syslinux/* /var/lib/tftpboot
+</code></pre></div><ul>
+<li>生成必要的目录和文件，上面的 dnsmasq 配置会从这里读取</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir /var/lib/tftpboot/pxelinux.cfg
+mkdir /var/lib/tftpboot/centos7
+touch /var/lib/tftpboot/pxelinux.cfg/default
+</code></pre></div><p>default 文件内容为：</p>
+<pre><code>default menu
+prompt 0
+label pxe
+kernel centos7/vmlinuz
+append initrd=centos7/initrd.img method=ftp://192.168.1.5/pub
+</code></pre><p>注意上面的 IP 地址为 pxe server 的 IP</p>
+<ul>
+<li>挂载 ISO 文件，拷贝内核文件和镜像到指定目录</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mount -o loop /tmp/centos-dvd.iso  /mnt 
+cp /mnt/images/pxeboot/vmlinuz  /var/lib/tftpboot/centos7
+cp /mnt/images/pxeboot/initrd.img  /var/lib/tftpboot/centos7
+cp -r /mnt/* /var/ftp/pub/
+chmod -R <span style="color:#ae81ff">755</span> /var/ftp/pub
+</code></pre></div><ul>
+<li>启动所有服务</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">systemctl start dnsmasq
+systemctl start vsftpd
+systemctl enable dnsmasq
+systemctl enable vsftpd
+</code></pre></div><p>ps 命令查看进程，确保上述服务都已经启动，并能从浏览器能访问到 ftp 中的文件，如果没法访问，查看是否因为防火墙的原因。到这一步 pxe server 就准备好了。</p>
+<ul>
 <li>再创建一个 centOS 的 VM，称为 B，注意 B 的内存必须设置大于 1 G，否则会导致安装失败。设置 B 也为桥接模式，启动时按 F12，设置从网络引导。</li>
 <li>如果一切顺利，可以看到 B 先广播了一个 DHCP 包，被 A 上的 dnsmasq 收到，响应了一个 DHCPOFFER，并给 B 分配了 IP，然后 B 从 A 的 tftp 目录下载内核，最后就进入到熟悉的装机界面了。</li>
 </ul>
-<h2 id="ks-自动安装"><a href="#ks-自动安装" class="headerlink" title="ks 自动安装"></a>ks 自动安装</h2><p>上面的安装流程，实现了从网络装机目的，但有个问题：进入装机界面后，仍然需要我们手动选择一些配置，批量装机的话，一台一台配置，还是很麻烦。我们可以通过 ks（kickstart） 文件，实现自动配置，即在需要选择的步骤时，由 ks 自动帮我们选择。</p>
-<p>ks 文件实际就是个装机模板，它定义了系统装机时的一些配置选项，比如时间，网络，分区，用户名，密码等。一份典型的 ks 文件如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">install </span><br><span class="line">url --url=ftp://192.168.1.5/pub/</span><br><span class="line"></span><br><span class="line"><span class="comment">################################</span></span><br><span class="line"><span class="comment"># BASIC CONFIGURATIONS</span></span><br><span class="line"><span class="comment">################################</span></span><br><span class="line"><span class="comment"># System language</span></span><br><span class="line">lang en_US.UTF-8</span><br><span class="line"></span><br><span class="line"><span class="comment"># Keyboard layout</span></span><br><span class="line">keyboard --vckeymap=us --xlayouts=<span class="string">&#x27;us&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># System timezone</span></span><br><span class="line">timezone Asia/Shanghai --isUtc</span><br><span class="line"></span><br><span class="line"><span class="comment"># SELinux configuration</span></span><br><span class="line">selinux --disabled</span><br><span class="line"></span><br><span class="line"><span class="comment"># System services</span></span><br><span class="line">services --enabled=<span class="string">&quot;chronyd&quot;</span></span><br><span class="line">firstboot --<span class="built_in">disable</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Use graphical install</span></span><br><span class="line">graphical</span><br><span class="line"></span><br><span class="line"><span class="comment"># Reboot after installation</span></span><br><span class="line">reboot</span><br><span class="line"></span><br><span class="line"><span class="comment"># System authorization information</span></span><br><span class="line">auth --enableshadow --passalgo=sha512</span><br><span class="line"></span><br><span class="line"><span class="comment">################################</span></span><br><span class="line"><span class="comment"># ROOT PASSWORD</span></span><br><span class="line"><span class="comment">################################</span></span><br><span class="line"></span><br><span class="line">rootpw --iscrypted $1<span class="variable">$TzIdo</span>.bL<span class="variable">$rjBu</span>.XWo38VS0xQ/QWOYI.</span><br><span class="line"></span><br><span class="line"><span class="comment">################################</span></span><br><span class="line"><span class="comment"># NETWORK CONFIGURATIONS</span></span><br><span class="line"><span class="comment">################################</span></span><br><span class="line">network --hostname=localhost</span><br><span class="line"></span><br><span class="line">network --bootproto=dhcp --device=eth0 --onboot=on</span><br><span class="line"></span><br><span class="line"><span class="comment">################################</span></span><br><span class="line"><span class="comment"># DISK PARTITIONS</span></span><br><span class="line"><span class="comment">################################</span></span><br><span class="line"></span><br><span class="line">autopart --<span class="built_in">type</span>=lvm</span><br><span class="line">clearpart --all --initlabel</span><br><span class="line"></span><br><span class="line"><span class="comment">################################</span></span><br><span class="line"><span class="comment"># POST SCRIPTS</span></span><br><span class="line"><span class="comment">################################</span></span><br><span class="line">%post</span><br><span class="line">systemctl <span class="built_in">enable</span> sshd</span><br><span class="line"></span><br><span class="line">%end</span><br><span class="line"></span><br><span class="line"><span class="comment">################################</span></span><br><span class="line"><span class="comment"># PACKAGES</span></span><br><span class="line"><span class="comment">################################</span></span><br><span class="line">%packages</span><br><span class="line">@core</span><br><span class="line">chrony</span><br><span class="line">kexec-tools</span><br><span class="line">%end</span><br><span class="line"></span><br><span class="line">%addon com_redhat_kdump --<span class="built_in">enable</span> --reserve-mb=<span class="string">&#x27;auto&#x27;</span></span><br></pre></td></tr></table></figure><br>将上述内容写入到 /var/ftp/pub/ks/centos.ks 文件中，并修改上面第 4 部的 default 文件，指明 ks 文件的路径<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">default menu</span><br><span class="line">prompt 0</span><br><span class="line">label pxe</span><br><span class="line">kernel centos7/vmlinuz</span><br><span class="line">append initrd=centos7/initrd.img devfs=nomount ksdevice=bootif ks=ftp://192.168.1.5/pub/ks/centos.ks</span><br></pre></td></tr></table></figure><br>这样，当 client 下载内核后，会从指定路径下载 ks，然后在 ks 的引导下，自动装机，这样就不需要人工做任何操作了。更重要的是，只要共用一份相同的 ks，那么所有的机器装好系统后，设置都是一样的。</p>
+<h2 id="ks-">ks 自动安装</h2>
+<p>上面的安装流程，实现了从网络装机目的，但有个问题：进入装机界面后，仍然需要我们手动选择一些配置，批量装机的话，一台一台配置，还是很麻烦。我们可以通过 ks（kickstart） 文件，实现自动配置，即在需要选择的步骤时，由 ks 自动帮我们选择。</p>
+<p>ks 文件实际就是个装机模板，它定义了系统装机时的一些配置选项，比如时间，网络，分区，用户名，密码等。一份典型的 ks 文件如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">install 
+url --url<span style="color:#f92672">=</span>ftp://192.168.1.5/pub/
+
+<span style="color:#75715e">################################</span>
+<span style="color:#75715e"># BASIC CONFIGURATIONS</span>
+<span style="color:#75715e">################################</span>
+<span style="color:#75715e"># System language</span>
+lang en_US.UTF-8
+
+<span style="color:#75715e"># Keyboard layout</span>
+keyboard --vckeymap<span style="color:#f92672">=</span>us --xlayouts<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;us&#39;</span>
+
+<span style="color:#75715e"># System timezone</span>
+timezone Asia/Shanghai --isUtc
+
+<span style="color:#75715e"># SELinux configuration</span>
+selinux --disabled
+
+<span style="color:#75715e"># System services</span>
+services --enabled<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;chronyd&#34;</span>
+firstboot --disable
+
+<span style="color:#75715e"># Use graphical install</span>
+graphical
+
+<span style="color:#75715e"># Reboot after installation</span>
+reboot
+
+<span style="color:#75715e"># System authorization information</span>
+auth --enableshadow --passalgo<span style="color:#f92672">=</span>sha512
+
+<span style="color:#75715e">################################</span>
+<span style="color:#75715e"># ROOT PASSWORD</span>
+<span style="color:#75715e">################################</span>
+
+rootpw --iscrypted $1$TzIdo.bL$rjBu.XWo38VS0xQ/QWOYI.
+
+<span style="color:#75715e">################################</span>
+<span style="color:#75715e"># NETWORK CONFIGURATIONS</span>
+<span style="color:#75715e">################################</span>
+network --hostname<span style="color:#f92672">=</span>localhost
+
+network --bootproto<span style="color:#f92672">=</span>dhcp --device<span style="color:#f92672">=</span>eth0 --onboot<span style="color:#f92672">=</span>on
+
+<span style="color:#75715e">################################</span>
+<span style="color:#75715e"># DISK PARTITIONS</span>
+<span style="color:#75715e">################################</span>
+
+autopart --type<span style="color:#f92672">=</span>lvm
+clearpart --all --initlabel
+
+<span style="color:#75715e">################################</span>
+<span style="color:#75715e"># POST SCRIPTS</span>
+<span style="color:#75715e">################################</span>
+%post
+systemctl enable sshd
+
+%end
+
+<span style="color:#75715e">################################</span>
+<span style="color:#75715e"># PACKAGES</span>
+<span style="color:#75715e">################################</span>
+%packages
+@core
+chrony
+kexec-tools
+%end
+
+%addon com_redhat_kdump --enable --reserve-mb<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;auto&#39;</span>
+</code></pre></div><p>将上述内容写入到 /var/ftp/pub/ks/centos.ks 文件中，并修改上面第 4 部的 default 文件，指明 ks 文件的路径</p>
+<pre><code>default menu
+prompt 0
+label pxe
+kernel centos7/vmlinuz
+append initrd=centos7/initrd.img devfs=nomount ksdevice=bootif ks=ftp://192.168.1.5/pub/ks/centos.ks
+</code></pre><p>这样，当 client 下载内核后，会从指定路径下载 ks，然后在 ks 的引导下，自动装机，这样就不需要人工做任何操作了。更重要的是，只要共用一份相同的 ks，那么所有的机器装好系统后，设置都是一样的。</p>
 <blockquote>
 <p>CentOS 系统的模板类型叫 kickstart，而 ubuntu 的话，称 preseed，二者的格式有所不同</p>
 </blockquote>
-<h2 id="裸金属服务器"><a href="#裸金属服务器" class="headerlink" title="裸金属服务器"></a>裸金属服务器</h2><p>现在公有云和私有云中，有一类称为裸金属服务器的产品，如阿里云的神龙裸金属服务器，华为的 BMS 等，特点是具备了虚拟机的弹性，又有物理机的性能。实际上它就是一种物理机托管，云平台通过 IPMI 设备将这些物理机管理起来，用户要用服务器时，在云平台上选择好规格，点击创建，后端会根据规格，选择一台实际的物理机，通电，然后 PXE 装系统，装好后交付给用户。更进一步，可以直接把安装好系统的 ghost 或 qcow2 文件放在 pxe server，装机时直接释放到所有机器，就像我们恢复系统样，省去了安装系统的步骤，更加便捷效率更高。甚至本地机器根本不需要硬盘，直接挂载一个云盘，然后将系统释放到云盘即可。当用户使用完后，直接给该物理机断电，相当于归还过程。后面如果又有用户用，重新走通电装系统流程。在 openstack 项目中，有个叫 ironic 的子项目，就是裸机管理。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文介绍了 PXE 装机的基本原理和使用场景，这也是企业 IDC 机房大规模安装系统的方式，运维只要准备一个 pxe server，然后通过 ipmi 批量设置所有机器都从 PXE 引导，这样就不需要拿着光盘 U 盘在机房人肉操作了。实际使用中，可能会有更多的定制化，比如在 ks 里自动安装一些必备软件，比如装机前后，向某个 log server 发请求，表明装机情况等。云厂商的裸金属服务器产品，基本都基于这种原理，或者加入了一些定制化，使之更便捷装机效率更高。</p>
-<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><ul>
-<li><a target="_blank" rel="noopener" href="https://blog.51cto.com/itwish/2154820">https://blog.51cto.com/itwish/2154820</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.tecmint.com/install-pxe-network-boot-server-in-centos-7/">https://www.tecmint.com/install-pxe-network-boot-server-in-centos-7/</a></li>
+<h2 id="heading4">裸金属服务器</h2>
+<p>现在公有云和私有云中，有一类称为裸金属服务器的产品，如阿里云的神龙裸金属服务器，华为的 BMS 等，特点是具备了虚拟机的弹性，又有物理机的性能。实际上它就是一种物理机托管，云平台通过 IPMI 设备将这些物理机管理起来，用户要用服务器时，在云平台上选择好规格，点击创建，后端会根据规格，选择一台实际的物理机，通电，然后 PXE 装系统，装好后交付给用户。更进一步，可以直接把安装好系统的 ghost 或 qcow2 文件放在 pxe server，装机时直接释放到所有机器，就像我们恢复系统样，省去了安装系统的步骤，更加便捷效率更高。甚至本地机器根本不需要硬盘，直接挂载一个云盘，然后将系统释放到云盘即可。当用户使用完后，直接给该物理机断电，相当于归还过程。后面如果又有用户用，重新走通电装系统流程。在 openstack 项目中，有个叫 ironic 的子项目，就是裸机管理。</p>
+<h2 id="heading5">总结</h2>
+<p>本文介绍了 PXE 装机的基本原理和使用场景，这也是企业 IDC 机房大规模安装系统的方式，运维只要准备一个 pxe server，然后通过 ipmi 批量设置所有机器都从 PXE 引导，这样就不需要拿着光盘 U 盘在机房人肉操作了。实际使用中，可能会有更多的定制化，比如在 ks 里自动安装一些必备软件，比如装机前后，向某个 log server 发请求，表明装机情况等。云厂商的裸金属服务器产品，基本都基于这种原理，或者加入了一些定制化，使之更便捷装机效率更高。</p>
+<h4 id="heading6">参考</h4>
+<ul>
+<li><a href="https://blog.51cto.com/itwish/2154820">https://blog.51cto.com/itwish/2154820</a></li>
+<li><a href="https://www.tecmint.com/install-pxe-network-boot-server-in-centos-7/">https://www.tecmint.com/install-pxe-network-boot-server-in-centos-7/</a></li>
 </ul>
-</div><script type="text/javascript" src="/js/share.js?v=0.9.0" async></script><a class="article-share-link" data-url="http://xujimmy.com/2019/07/21/pxe-install-os.html" data-id="ckpxel6lq001baykwg1hegknw" data-qrcode="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACNklEQVR42u3aQW7DMAwF0dz/0i7QXeHank8mAUSNVoHhyHpaEJTI1wuP43dcPTnwOL9/nvP8/G1DhgwZyzL4h+959+/zJfINkiFDxm6MdLoa74rEt+PyuQwZMmRgEn9S2wIZMmTIqAVcckDlMBkyZMjoHGI7AZQv9+NncRkyZCzISAsD3/z9wfqGDBkyFmEc4eDBkX+3tpI/M8iQIWM0gzRSpNf95BhMYiYpIQT9IDJkyFiWkTZv8SMlCdNkiffzy5AhYwfGu9q8ahf9tSWiBFSGDBmDGGnrAy9z8jsxMs9DsJYhQ8Y2DJ6Q8ee1RDA+SMuQIWM0I72Ur12upWGdHKdlyJCxD6MWOtOrOh6OedHin9RQhgwZGzD4RRtfaK11Iy48yJAhYzQjTcXSgkENzNs+ZMiQsQ8jPZqS5tQ07Haaz2TIkLEDo5aQcV6aaBZJMmTIGMropHG8IystaqalUBkyZOzAIAGus/TOdRtKSWXIkDGakTZ71d5Jk79i04YMGTKGMngKGLQ+8Ot7HkzvZ5MhQ8YGDBIoyaRpOOYtZQ8bJ0OGjNGMNLDWCpZxq0TpMCxDhoypjCMcnZJnpznjIQ+UIUPGaEYa7NIyJAGkxYla0VSGDBmrM3iQ5UfZ9EjMN+jyKzJkyNiAcf/JNBGMI3oY9B/KAzJkyNiYwXmkhaK/ZTJkyJDBP8yLCu8qW7ZSQxkyZCzL6BQDagtNL+Me/itDhozRjFphgJcNaqG2XxyVIUPGCMYPt9zmVKKcZzkAAAAASUVORK5CYII=">分享</a><div class="tags"><a href="/tags/pxe/">pxe</a><a href="/tags/ipmi/">ipmi</a><a href="/tags/dnsmasq/">dnsmasq</a><a href="/tags/dhcp/">dhcp</a></div><div class="article-footer-copyright"><p>本文由 JimmyXu 发表，采用<a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh">署名-非商业性使用-禁止演绎4.0</a>进行许可</p><p>非商业转载请注明作者及出处，商业转载请联系作者本人</p><p>本文标题: 使用 PXE 从网络安装操作系统</p><p>本文链接: <a href="http://xujimmy.com/2019/07/21/pxe-install-os.html">http://xujimmy.com/2019/07/21/pxe-install-os.html</a></p></div><div class="post-nav"><a class="pre" href="/2019/08/11/schedule-in-cloud.html">云计算中的资源调度</a><a class="next" href="/2019/06/27/what-is-io-multiplexing.html">什么是 I/O 多路复用</a></div><div id="container"></div><link rel="stylesheet" href="/css/default.css?v=0.9.0"><script src="/js/gitment.browser.js?v=0.9.0"></script><script>var gitment = new Gitment({
-  owner: 'hbxjw119',
-  repo: 'hbxjw119.github.io',
-  oauth: {
-    client_id: '6cc8e017eb97ff6696f8',
-    client_secret: '042c585d7da96a9f11048ec8bdedd79920c00890',
-  },
-})
-gitment.render('container')
-</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"/><div id="local-search-result"></div></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Blog/">Blog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Life/">Life</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tech/">Tech</a><span class="category-list-count">39</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/gevent/" style="font-size: 15px;">gevent</a> <a href="/tags/linux/" style="font-size: 15px;">linux</a> <a href="/tags/mysql/" style="font-size: 15px;">mysql</a> <a href="/tags/redis/" style="font-size: 15px;">redis</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/xargs/" style="font-size: 15px;">xargs</a> <a href="/tags/PhantomJS/" style="font-size: 15px;">PhantomJS</a> <a href="/tags/sort/" style="font-size: 15px;">sort</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/monitor/" style="font-size: 15px;">monitor</a> <a href="/tags/php/" style="font-size: 15px;">php</a> <a href="/tags/awk/" style="font-size: 15px;">awk</a> <a href="/tags/grep/" style="font-size: 15px;">grep</a> <a href="/tags/influxdb/" style="font-size: 15px;">influxdb</a> <a href="/tags/grafana/" style="font-size: 15px;">grafana</a> <a href="/tags/design-pattern/" style="font-size: 15px;">design pattern</a> <a href="/tags/Cookie/" style="font-size: 15px;">Cookie</a> <a href="/tags/Session/" style="font-size: 15px;">Session</a> <a href="/tags/shell/" style="font-size: 15px;">shell</a> <a href="/tags/docker/" style="font-size: 15px;">docker</a> <a href="/tags/zsh/" style="font-size: 15px;">zsh</a> <a href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 15px;">公众号</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/tcp/" style="font-size: 15px;">tcp</a> <a href="/tags/http/" style="font-size: 15px;">http</a> <a href="/tags/lnmp/" style="font-size: 15px;">lnmp</a> <a href="/tags/fpm/" style="font-size: 15px;">fpm</a> <a href="/tags/algorithm/" style="font-size: 15px;">algorithm</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15px;">面试</a> <a href="/tags/%E5%8C%97%E4%BA%AC/" style="font-size: 15px;">北京</a> <a href="/tags/go/" style="font-size: 15px;">go</a> <a href="/tags/find/" style="font-size: 15px;">find</a> <a href="/tags/HTTPS/" style="font-size: 15px;">HTTPS</a> <a href="/tags/acme/" style="font-size: 15px;">acme</a> <a href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91/" style="font-size: 15px;">阿里云</a> <a href="/tags/web/" style="font-size: 15px;">web</a> <a href="/tags/%E8%AE%B0%E8%B4%A6/" style="font-size: 15px;">记账</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/maupassant/" style="font-size: 15px;">maupassant</a> <a href="/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 15px;">配置</a> <a href="/tags/vps/" style="font-size: 15px;">vps</a> <a href="/tags/shadowsocks/" style="font-size: 15px;">shadowsocks</a> <a href="/tags/bbr/" style="font-size: 15px;">bbr</a> <a href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/" style="font-size: 15px;">云计算</a> <a href="/tags/csdn/" style="font-size: 15px;">csdn</a> <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" style="font-size: 15px;">消息队列</a> <a href="/tags/MQ/" style="font-size: 15px;">MQ</a> <a href="/tags/math/" style="font-size: 15px;">math</a> <a href="/tags/%E5%85%AC%E5%BC%8F/" style="font-size: 15px;">公式</a> <a href="/tags/zookeeper/" style="font-size: 15px;">zookeeper</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/" style="font-size: 15px;">分布式系统</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/collection/" style="font-size: 15px;">collection</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/%E5%90%8C%E6%AD%A5/" style="font-size: 15px;">同步</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/" style="font-size: 15px;">虚拟机</a> <a href="/tags/KVM/" style="font-size: 15px;">KVM</a> <a href="/tags/pxe/" style="font-size: 15px;">pxe</a> <a href="/tags/ipmi/" style="font-size: 15px;">ipmi</a> <a href="/tags/dnsmasq/" style="font-size: 15px;">dnsmasq</a> <a href="/tags/dhcp/" style="font-size: 15px;">dhcp</a> <a href="/tags/openstack/" style="font-size: 15px;">openstack</a> <a href="/tags/k8s/" style="font-size: 15px;">k8s</a> <a href="/tags/schedule/" style="font-size: 15px;">schedule</a> <a href="/tags/%E8%B5%84%E6%BA%90%E8%B0%83%E5%BA%A6/" style="font-size: 15px;">资源调度</a> <a href="/tags/CPU/" style="font-size: 15px;">CPU</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 15px;">缓存</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/" style="font-size: 15px;">计算机系统</a> <a href="/tags/protobuf/" style="font-size: 15px;">protobuf</a> <a href="/tags/rpc/" style="font-size: 15px;">rpc</a> <a href="/tags/C/" style="font-size: 15px;">C++</a> <a href="/tags/%E4%BA%8C%E8%BF%9B%E5%88%B6/" style="font-size: 15px;">二进制</a> <a href="/tags/%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1/" style="font-size: 15px;">异步任务</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 15px;">操作系统</a> <a href="/tags/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98/" style="font-size: 15px;">虚拟内存</a> <a href="/tags/book/" style="font-size: 15px;">book</a> <a href="/tags/%E4%B9%A6%E5%8D%95/" style="font-size: 15px;">书单</a> <a href="/tags/TCP/" style="font-size: 15px;">TCP</a> <a href="/tags/HTTP/" style="font-size: 15px;">HTTP</a> <a href="/tags/httpie/" style="font-size: 15px;">httpie</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">网络</a> <a href="/tags/%E9%9A%8F%E6%83%B3/" style="font-size: 15px;">随想</a> <a href="/tags/select/" style="font-size: 15px;">select</a> <a href="/tags/epoll/" style="font-size: 15px;">epoll</a> <a href="/tags/BIO/" style="font-size: 15px;">BIO</a> <a href="/tags/NIO/" style="font-size: 15px;">NIO</a> <a href="/tags/%E8%89%BA%E6%9C%AF%EF%BC%8C%E7%BE%8E%E6%9C%AF%EF%BC%8C%E4%B8%AA%E4%BA%BA/" style="font-size: 15px;">艺术，美术，个人</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2021/05/29/about-painting-arts.html">谈谈美术绘画</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/07/12/introduction-virtual-memory.html">虚拟内存简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/05/22/poison-detect.html">由病毒检测想到的一种面试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/11/use-proto.html">使用 protobuf</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/09/29/computer-memory.html">程序员需要知道的数量级</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/11/schedule-in-cloud.html">云计算中的资源调度</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/21/pxe-install-os.html">使用 PXE 从网络安装操作系统</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/27/what-is-io-multiplexing.html">什么是 I/O 多路复用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/29/java-Future-and-Executor.html">Java 中 Future 和异步任务</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/23/git-pull-and-git-rebase.html">git pull 和 git rebase</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.coolguy.pw/" title="coolguy" target="_blank">coolguy</a><ul></ul><a href="https://timyang.net/" title="Tim's blog" target="_blank">Tim's blog</a><ul></ul><a href="https://coolshell.cn/" title="酷壳" target="_blank">酷壳</a><ul></ul><a href="https://toutiao.io/" title="开发者头条" target="_blank">开发者头条</a><ul></ul><a href="https://huoding.com/" title="火丁笔记" target="_blank">火丁笔记</a><ul></ul><a href="http://blog.guoyb.com/" title="笨茄子" target="_blank">笨茄子</a><ul></ul><a href="https://mengkang.net/" title="周孟康" target="_blank">周孟康</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2021 <a href="/." rel="nofollow">JimmyXu的小站 |</a> <a rel="nofollow" target="_blank" href="http://www.miitbeian.gov.cn/">京ICP备 17056410 号 | </a> Powered by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho</a><div><i class="fa fa-eye"><span class="visitors"></span></i></div></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.9.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.9.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/search.js?v=0.9.0"></script><script>var search_path = 'search.xml';
-if (search_path.length == 0) {
-   search_path = 'search.xml';
-}
-var path = '/' + search_path;
-searchFunc(path, 'local-search-input', 'local-search-result');
-</script><script>var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = '//hm.baidu.com/hm.js?b24b1cbb03fdc613791573423619f3e3';
-  var s = document.getElementsByTagName("script")[0];
-  s.parentNode.insertBefore(hm, s);
-  })();
-</script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.9.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.9.0"></script><script type="text/javascript" src="//xujimmy.oss-cn-beijing.aliyuncs.com/av-min.js"></script><script type="text/javascript" src="/js/leandcnt.js?v=0.9.0"></script><script>visitorCount('phNBe6j30h7xFUszRWcBTCIi-gzGzoHsz', '0MKEk5HhPkcT27ogNF4tNhQA', '5a1e63f58d6d8100628a225e')</script></div></body></html>
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="http://xujimmy.com">JimmyXu</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="http://xujimmy.com/2019/07/21/pxe-install-os.html">http://xujimmy.com/2019/07/21/pxe-install-os.html</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
+</div>
+<br/>
+
+
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/2019/06/27/what-is-io-multiplexing.html">什么是 I/O 多路复用</a></li>
+        
+        <li><a href="/2019/05/29/java-future-and-executor.html">Java 中 Future 和异步任务</a></li>
+        
+        <li><a href="/2019/04/23/git-pull-and-git-rebase.html">git pull 和 git rebase</a></li>
+        
+        <li><a href="/2019/04/01/docker-and-vm.html">Docker 和 KVM 虚拟机</a></li>
+        
+        <li><a href="/2019/03/24/java-analyzer-tools.html">Java 中常用的监控和故障处理命令行工具</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            没有标签
+            
+        </div>
+    </article>
+    
+    
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "hbxjw119/hbxjw119.github.io"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+</div>
+
+                    <footer id="footer">
+    <div>
+        &copy; 2021 <a href="http://xujimmy.com">JimmyXu的小站 By JimmyXu</a>
+        
+    </div>
+    <br />
+    <div>
+        <div class="github-badge">
+            <a href="https://gohugo.io/" target="_black" rel="nofollow"><span class="badge-subject">Powered by</span><span class="badge-value bg-blue">Hugo</span></a>
+        </div>
+        <div class="github-badge">
+            <a href="https://www.flysnow.org/" target="_black"><span class="badge-subject">Design by</span><span class="badge-value bg-brightgreen">飞雪无情</span></a>
+        </div>
+        <div class="github-badge">
+            <a href="https://github.com/flysnow-org/maupassant-hugo" target="_black"><span class="badge-subject">Theme</span><span class="badge-value bg-yellowgreen">Maupassant</span></a>
+        </div>
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script><script src="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+
+
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='//www.google.com/search' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://xujimmy.com">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://xujimmy.com/2021/05/29/about-painting-arts.html" title="谈谈美术绘画">谈谈美术绘画</a>
+    </li>
+    
+    <li>
+        <a href="http://xujimmy.com/2020/07/12/introduction-virtual-memory.html" title="虚拟内存简介">虚拟内存简介</a>
+    </li>
+    
+    <li>
+        <a href="http://xujimmy.com/2020/05/22/poison-detect.html" title="由病毒检测想到的一种面试题">由病毒检测想到的一种面试题</a>
+    </li>
+    
+    <li>
+        <a href="http://xujimmy.com/2019/12/11/use-proto.html" title="使用 protobuf">使用 protobuf</a>
+    </li>
+    
+    <li>
+        <a href="http://xujimmy.com/2019/09/29/computer-memory.html" title="程序员需要知道的数量级">程序员需要知道的数量级</a>
+    </li>
+    
+    <li>
+        <a href="http://xujimmy.com/2019/08/11/schedule-in-cloud.html" title="云计算中的资源调度">云计算中的资源调度</a>
+    </li>
+    
+    <li>
+        <a href="http://xujimmy.com/2019/07/21/pxe-install-os.html" title="使用 PXE 从网络安装操作系统">使用 PXE 从网络安装操作系统</a>
+    </li>
+    
+    <li>
+        <a href="http://xujimmy.com/2019/06/27/what-is-io-multiplexing.html" title="什么是 I/O 多路复用">什么是 I/O 多路复用</a>
+    </li>
+    
+    <li>
+        <a href="http://xujimmy.com/2019/05/29/java-future-and-executor.html" title="Java 中 Future 和异步任务">Java 中 Future 和异步任务</a>
+    </li>
+    
+    <li>
+        <a href="http://xujimmy.com/2019/04/23/git-pull-and-git-rebase.html" title="git pull 和 git rebase">git pull 和 git rebase</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title"><a href='/categories/'>分类</a></h3>
+<ul class="widget-list">
+    
+    <li><a href="http://xujimmy.com/categories/life.html">Life (5)</a></li>
+    
+    <li><a href="http://xujimmy.com/categories/linux.html">Linux (7)</a></li>
+    
+    <li><a href="http://xujimmy.com/categories/math.html">Math (2)</a></li>
+    
+    <li><a href="http://xujimmy.com/categories/tech.html">Tech (38)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title"><a href='/tags/'>标签</a></h3>
+<div class="tagcloud">
+    
+    <a href="http://xujimmy.com/tags/acme.html">acme</a>
+    
+    <a href="http://xujimmy.com/tags/algorithm.html">algorithm</a>
+    
+    <a href="http://xujimmy.com/tags/awk.html">awk</a>
+    
+    <a href="http://xujimmy.com/tags/book.html">book</a>
+    
+    <a href="http://xujimmy.com/tags/collection.html">collection</a>
+    
+    <a href="http://xujimmy.com/tags/cookie.html">Cookie</a>
+    
+    <a href="http://xujimmy.com/tags/csdn.html">csdn</a>
+    
+    <a href="http://xujimmy.com/tags/design-pattern.html">design pattern</a>
+    
+    <a href="http://xujimmy.com/tags/docker.html">docker</a>
+    
+    <a href="http://xujimmy.com/tags/find.html">find</a>
+    
+    <a href="http://xujimmy.com/tags/fpm.html">fpm</a>
+    
+    <a href="http://xujimmy.com/tags/gevent.html">gevent</a>
+    
+    <a href="http://xujimmy.com/tags/git.html">git</a>
+    
+    <a href="http://xujimmy.com/tags/go.html">go</a>
+    
+    <a href="http://xujimmy.com/tags/grafana.html">grafana</a>
+    
+    <a href="http://xujimmy.com/tags/grep.html">grep</a>
+    
+    <a href="http://xujimmy.com/tags/http.html">http</a>
+    
+    <a href="http://xujimmy.com/tags/httpie.html">httpie</a>
+    
+    <a href="http://xujimmy.com/tags/https.html">HTTPS</a>
+    
+    <a href="http://xujimmy.com/tags/influxdb.html">influxdb</a>
+    
+    <a href="http://xujimmy.com/tags/java.html">Java</a>
+    
+    <a href="http://xujimmy.com/tags/jvm.html">JVM</a>
+    
+    <a href="http://xujimmy.com/tags/kvm.html">KVM</a>
+    
+    <a href="http://xujimmy.com/tags/linux.html">linux</a>
+    
+    <a href="http://xujimmy.com/tags/lnmp.html">lnmp</a>
+    
+    <a href="http://xujimmy.com/tags/math.html">math</a>
+    
+    <a href="http://xujimmy.com/tags/monitor.html">monitor</a>
+    
+    <a href="http://xujimmy.com/tags/mq.html">MQ</a>
+    
+    <a href="http://xujimmy.com/tags/mysql.html">mysql</a>
+    
+    <a href="http://xujimmy.com/tags/nginx.html">nginx</a>
+    
+    <a href="http://xujimmy.com/tags/phantomjs.html">PhantomJS</a>
+    
+    <a href="http://xujimmy.com/tags/php.html">php</a>
+    
+    <a href="http://xujimmy.com/tags/python.html">python</a>
+    
+    <a href="http://xujimmy.com/tags/redis.html">redis</a>
+    
+    <a href="http://xujimmy.com/tags/session.html">Session</a>
+    
+    <a href="http://xujimmy.com/tags/shell.html">shell</a>
+    
+    <a href="http://xujimmy.com/tags/sort.html">sort</a>
+    
+    <a href="http://xujimmy.com/tags/tcp.html">tcp</a>
+    
+    <a href="http://xujimmy.com/tags/web.html">web</a>
+    
+    <a href="http://xujimmy.com/tags/xargs.html">xargs</a>
+    
+    <a href="http://xujimmy.com/tags/zookeeper.html">zookeeper</a>
+    
+    <a href="http://xujimmy.com/tags/zsh.html">zsh</a>
+    
+    <a href="http://xujimmy.com/tags/%E4%B9%A6%E5%8D%95.html">书单</a>
+    
+    <a href="http://xujimmy.com/tags/%E4%BA%8C%E8%BF%9B%E5%88%B6.html">二进制</a>
+    
+    <a href="http://xujimmy.com/tags/%E5%85%AC%E4%BC%97%E5%8F%B7.html">公众号</a>
+    
+    <a href="http://xujimmy.com/tags/%E5%85%AC%E5%BC%8F.html">公式</a>
+    
+    <a href="http://xujimmy.com/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F.html">分布式系统</a>
+    
+    <a href="http://xujimmy.com/tags/%E5%8C%97%E4%BA%AC.html">北京</a>
+    
+    <a href="http://xujimmy.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.html">操作系统</a>
+    
+    <a href="http://xujimmy.com/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97.html">消息队列</a>
+    
+    <a href="http://xujimmy.com/tags/%E7%BD%91%E7%BB%9C.html">网络</a>
+    
+    <a href="http://xujimmy.com/tags/%E8%89%BA%E6%9C%AF%E7%BE%8E%E6%9C%AF%E4%B8%AA%E4%BA%BA.html">艺术，美术，个人</a>
+    
+    <a href="http://xujimmy.com/tags/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98.html">虚拟内存</a>
+    
+    <a href="http://xujimmy.com/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA.html">虚拟机</a>
+    
+    <a href="http://xujimmy.com/tags/%E8%AE%B0%E8%B4%A6.html">记账</a>
+    
+    <a href="http://xujimmy.com/tags/%E9%98%BF%E9%87%8C%E4%BA%91.html">阿里云</a>
+    
+    <a href="http://xujimmy.com/tags/%E9%9A%8F%E6%83%B3.html">随想</a>
+    
+    <a href="http://xujimmy.com/tags/%E9%9D%A2%E8%AF%95.html">面试</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://xujimmy.com/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

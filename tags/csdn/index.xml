@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>csdn on JimmyXu的小站</title>
+    <link>http://xujimmy.com/tags/csdn.html</link>
+    <description>Recent content in csdn on JimmyXu的小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 22 Jan 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://xujimmy.com/tags/csdn/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>CSDN 的困境</title>
+      <link>http://xujimmy.com/2018/01/22/about-csdn.html</link>
+      <pubDate>Mon, 22 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2018/01/22/about-csdn.html</guid>
+      <description>&lt;p&gt;前两天在微博上，看到CSDN的创始人发了这样一条微博，内容如下&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

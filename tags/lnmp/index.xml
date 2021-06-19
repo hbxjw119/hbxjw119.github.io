@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>lnmp on JimmyXu的小站</title>
+    <link>http://xujimmy.com/tags/lnmp.html</link>
+    <description>Recent content in lnmp on JimmyXu的小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 12 Sep 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://xujimmy.com/tags/lnmp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>由 lnmp 一键安装脚本所引发的错误</title>
+      <link>http://xujimmy.com/2017/09/12/lnmp-debug.html</link>
+      <pubDate>Tue, 12 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/09/12/lnmp-debug.html</guid>
+      <description>&lt;p&gt;在装&lt;a href=&#34;https://lnmp.org/&#34;&gt;lnmp&lt;/a&gt;全家桶时，有时为了方便，会直接用一键安装脚本，一条命令，就把所有的环境都装好了，简单省事，但有时出现配置错误，也不太好排查，分享一个遇到的问题。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

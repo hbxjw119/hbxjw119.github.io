@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>design pattern on JimmyXu的小站</title>
+    <link>http://xujimmy.com/tags/design-pattern.html</link>
+    <description>Recent content in design pattern on JimmyXu的小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 02 Jan 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://xujimmy.com/tags/design-pattern/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>PHP中的依赖注入是什么东西</title>
+      <link>http://xujimmy.com/2017/01/02/php-di.html</link>
+      <pubDate>Mon, 02 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/01/02/php-di.html</guid>
+      <description>&lt;p&gt;设计模式中，有一个叫控制反转（Inversion of Control），也叫依赖注入(Dependency Injection)，这种设计模式用来减少程序间的耦合，这篇文章不讲解概念性的东西，直接上代码，如果要深追理论，要看设计模式一书&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

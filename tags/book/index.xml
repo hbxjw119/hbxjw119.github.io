@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>book on JimmyXu的小站</title>
+    <link>http://xujimmy.com/tags/book.html</link>
+    <description>Recent content in book on JimmyXu的小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 25 Nov 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://xujimmy.com/tags/book/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>我的书单</title>
+      <link>http://xujimmy.com/2017/11/25/books.html</link>
+      <pubDate>Sat, 25 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/11/25/books.html</guid>
+      <description>&lt;p&gt;小时候的我就特别喜欢看书，不过那时都是课外儿童读物，也包括一些科技方面的书，当时班上流行读书文化，我们有自己的圈子，常常是每人买一本书，然后交换着看，交流心得。记得小时候最喜欢的是郑渊洁的童话书，第一次看鲁西西传时，惊为神书，怎么会有这么引人入胜的故事啊，废寝忘食的看。现在想想，非常怀恋，那些儿时的书友们，你们现在还好吗？&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

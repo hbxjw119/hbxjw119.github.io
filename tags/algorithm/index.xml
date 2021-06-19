@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>algorithm on JimmyXu的小站</title>
+    <link>http://xujimmy.com/tags/algorithm.html</link>
+    <description>Recent content in algorithm on JimmyXu的小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 15 Oct 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://xujimmy.com/tags/algorithm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>一道面试题：随机洗牌法和蓄水池算法</title>
+      <link>http://xujimmy.com/2017/10/15/shuffle.html</link>
+      <pubDate>Sun, 15 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/10/15/shuffle.html</guid>
+      <description>&lt;p&gt;面试时，遇到这么一个问题，觉得比较有意思，可惜我答得不好，特记录下。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

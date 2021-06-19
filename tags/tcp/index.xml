@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tcp on JimmyXu的小站</title>
+    <link>http://xujimmy.com/tags/tcp.html</link>
+    <description>Recent content in tcp on JimmyXu的小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 10 Sep 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://xujimmy.com/tags/tcp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>TCP 和 HTTP</title>
+      <link>http://xujimmy.com/2017/09/10/tcp-http.html</link>
+      <pubDate>Sun, 10 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/09/10/tcp-http.html</guid>
+      <description>&lt;p&gt;在经典的计算机网络 ISO 七层模型中，最接近用户的，是应用层，其次是传输层。应用层中，HTTP 是最重要的协议之一，而 TCP，则是传输层中最重要的协议之一，这两类协议可以说是现代互联网的基石。无论是组网，编码，网络故障定位，面试，这两类协议都是相当重要的，网上已经有很多相关的分析文章，这里也整理下我关于这两个协议的相关理解。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>当你在浏览器中输入网址，到看到网页，发生了什么</title>
+      <link>http://xujimmy.com/2017/09/10/http.html</link>
+      <pubDate>Sun, 10 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/09/10/http.html</guid>
+      <description>&lt;p&gt;这是一道经典的面试题，不光是前端面试会问到，后端也会，此题没有标准的答案，但在你了解的范围内，当然是答得越详细越好，这里就简单记录下几个关键流程吧。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

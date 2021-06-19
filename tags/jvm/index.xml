@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JVM on JimmyXu的小站</title>
+    <link>http://xujimmy.com/tags/jvm.html</link>
+    <description>Recent content in JVM on JimmyXu的小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 24 Mar 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://xujimmy.com/tags/jvm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Java 中常用的监控和故障处理命令行工具</title>
+      <link>http://xujimmy.com/2019/03/24/java-analyzer-tools.html</link>
+      <pubDate>Sun, 24 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2019/03/24/java-analyzer-tools.html</guid>
+      <description>&lt;p&gt;我们常常需要获取 Java 程序运行过程中的一些执行情况，如执行路径，GC 情况，堆栈信息等。JDK 给我们提供了一些简单但却很有用的命令行工具，本文介绍下这些工具的使用和参数说明，用于备忘。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

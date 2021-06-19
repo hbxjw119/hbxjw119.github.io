@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>fpm on JimmyXu的小站</title>
+    <link>http://xujimmy.com/tags/fpm.html</link>
+    <description>Recent content in fpm on JimmyXu的小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 11 Oct 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://xujimmy.com/tags/fpm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>php-fpm 子进程的数量，是越大越好吗？</title>
+      <link>http://xujimmy.com/2017/10/11/fpm-conf.html</link>
+      <pubDate>Wed, 11 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/10/11/fpm-conf.html</guid>
+      <description>&lt;p&gt;我们知道，在 Linux 环境下，处理php脚本的进程是&lt;code&gt;php-fpm&lt;/code&gt;。&lt;code&gt;php-fpm&lt;/code&gt;的允许方式有两种：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;static ：表示在 &lt;code&gt;php-fpm&lt;/code&gt; 运行时直接 &lt;code&gt;fork&lt;/code&gt; 出 &lt;code&gt;pm.max_chindren&lt;/code&gt; 个子进程，&lt;/li&gt;
+&lt;li&gt;dynamic：表示，运行时 &lt;code&gt;fork&lt;/code&gt; 出 &lt;code&gt;start_servers&lt;/code&gt; 个进程，随着负载的情况，动态的调整，最多不超过 &lt;code&gt;max_children&lt;/code&gt; 个进程。&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

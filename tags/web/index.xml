@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>web on JimmyXu的小站</title>
+    <link>http://xujimmy.com/tags/web.html</link>
+    <description>Recent content in web on JimmyXu的小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 11 Dec 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://xujimmy.com/tags/web/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>HTTPS 的握手过程</title>
+      <link>http://xujimmy.com/2017/12/11/https-handshakes.html</link>
+      <pubDate>Mon, 11 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/12/11/https-handshakes.html</guid>
+      <description>&lt;p&gt;在之前 &lt;a href=&#34;https://xujimmy.com/2017/12/01/https-blog.html&#34;&gt;给博客启用 HTTPS&lt;/a&gt; 的博文中，我们知道了怎么给自己的博客开启 HTTPS，本篇简要介绍下，HTTPS 连接与 HTTP 连接的不同。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

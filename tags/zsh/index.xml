@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>zsh on JimmyXu的小站</title>
+    <link>http://xujimmy.com/tags/zsh.html</link>
+    <description>Recent content in zsh on JimmyXu的小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 20 Jun 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://xujimmy.com/tags/zsh/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用 zsh，重新打造你的 Linux 工作环境</title>
+      <link>http://xujimmy.com/2017/06/20/linux-zsh.html</link>
+      <pubDate>Tue, 20 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/06/20/linux-zsh.html</guid>
+      <description>&lt;p&gt;对于经常在 Linux 环境下干活的码农们，shell 可以说是我们使用频率最高的程序了，shell 为我们和机器间建立了一个桥梁，它给我们提供一系列命令，我们就可以和机器进行愉快的交流了，比如写代码用&lt;code&gt;vim&lt;/code&gt;命令，查找文件使用&lt;code&gt;find`,&lt;/code&gt;grep&lt;code&gt;命令，版本控制使用&lt;/code&gt;git&lt;code&gt;，查看机器性能使用&lt;/code&gt;top`，bash 就是 shell 的一种，也是 Linux 下的默认 shell 程序，现在让我们使用 zsh，重新打造一个更加人性化的 shell&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

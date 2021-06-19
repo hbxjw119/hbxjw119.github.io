@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>公式 on JimmyXu的小站</title>
+    <link>http://xujimmy.com/tags/%E5%85%AC%E5%BC%8F.html</link>
+    <description>Recent content in 公式 on JimmyXu的小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 22 Mar 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://xujimmy.com/tags/%E5%85%AC%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>数学上的一些经典片段</title>
+      <link>http://xujimmy.com/2018/03/22/about-mathematical-formula.html</link>
+      <pubDate>Thu, 22 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2018/03/22/about-mathematical-formula.html</guid>
+      <description>&lt;p&gt;最近看的几本书里，都有提到一些数学方面的知识，有些符号和公式，放在现在，可能觉得没什么，一个小学生都能看懂，但却鲜有人知道，普及这些理论，需要几代人的不懈努力和探索。有些公式和推导，都堪称数学史上的经典，这里摘取一些片段，体会下数学的美妙，也让我们看看人类的智慧是无穷的&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

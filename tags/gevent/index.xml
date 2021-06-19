@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>gevent on JimmyXu的小站</title>
+    <link>http://xujimmy.com/tags/gevent.html</link>
+    <description>Recent content in gevent on JimmyXu的小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 17 May 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://xujimmy.com/tags/gevent/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>python 用 gevent 协程抓取海量网页</title>
+      <link>http://xujimmy.com/2016/05/17/python-gevent.html</link>
+      <pubDate>Tue, 17 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2016/05/17/python-gevent.html</guid>
+      <description>&lt;p&gt;python作为爬虫利器，抓网页的方式简洁明了。爬成百上千的网页，都可以很快爬完，但是如果网页数量上万呢？速度就不能忍受了。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

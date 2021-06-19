@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>awk on JimmyXu的小站</title>
+    <link>http://xujimmy.com/tags/awk.html</link>
+    <description>Recent content in awk on JimmyXu的小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 16 Nov 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://xujimmy.com/tags/awk/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>linux命令之--awk</title>
+      <link>http://xujimmy.com/2016/11/16/linux-awk.html</link>
+      <pubDate>Wed, 16 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2016/11/16/linux-awk.html</guid>
+      <description>&lt;p&gt;&lt;code&gt;awk&lt;/code&gt;命令是一个强大的文本分析工具，相对于grep的查找，sed的编辑，awk在其对数据分析并生成报告时，显得尤为强大。简单来说awk就是把文件逐行的读入，以空格为默认分隔符将每行切片，切开的部分再进行各种分析处理。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>find on JimmyXu的小站</title>
+    <link>http://xujimmy.com/tags/find.html</link>
+    <description>Recent content in find on JimmyXu的小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 19 Nov 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://xujimmy.com/tags/find/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>linux 命令之--find</title>
+      <link>http://xujimmy.com/2017/11/19/linux-find.html</link>
+      <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/11/19/linux-find.html</guid>
+      <description>&lt;p&gt;&lt;code&gt;find&lt;/code&gt;命令也是 linux 环境下使用频繁、功能强大的查找命令，基本每天的工作都会用到它，这里对&lt;code&gt;find&lt;/code&gt;命令做个总结，作为备忘&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

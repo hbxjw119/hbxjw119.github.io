@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>go on JimmyXu的小站</title>
+    <link>http://xujimmy.com/tags/go.html</link>
+    <description>Recent content in go on JimmyXu的小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 15 Nov 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://xujimmy.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Go语言中的数组(array)和切片(slice)</title>
+      <link>http://xujimmy.com/2017/11/15/go-arr-slice.html</link>
+      <pubDate>Wed, 15 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/11/15/go-arr-slice.html</guid>
+      <description>&lt;p&gt;刚开始学习go，里面有两个类型，常常容易让人弄混：array和slice，这里对这两个类型做个总结&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

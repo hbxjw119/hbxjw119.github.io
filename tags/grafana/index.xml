@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>grafana on JimmyXu的小站</title>
+    <link>http://xujimmy.com/tags/grafana.html</link>
+    <description>Recent content in grafana on JimmyXu的小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 21 Dec 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://xujimmy.com/tags/grafana/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>influxdb配合grafana的监控</title>
+      <link>http://xujimmy.com/2016/12/21/influxdb-grafana.html</link>
+      <pubDate>Wed, 21 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2016/12/21/influxdb-grafana.html</guid>
+      <description>&lt;p&gt;在大型公司，对于监管众多服务器的资源使用情况，是一项不可或缺的工作，随时了解每个服务器的运行状态，负载情况，对于发现线上问题，有着重要的参考价值。对于线上服务，监控和了解集群的工作状况，也是必不可少的环节。在机器监控方面，新兴的influxdb配合grafana，有如倚天屠龙，简单又好用。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

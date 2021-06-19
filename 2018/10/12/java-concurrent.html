@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+
+    <title>Java 中的同步方法 | JimmyXu的小站</title>
+    <meta property="og:title" content="Java 中的同步方法 - JimmyXu的小站">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2018-10-22T16:12:40&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2018-10-22T16:12:40&#43;08:00'>
+        
+    <meta name="Keywords" content="博客,Web,软件,互联网">
+    <meta name="description" content="Java 中的同步方法">
+        
+    <meta name="author" content="JimmyXu">
+    <meta property="og:url" content="http://xujimmy.com/2018/10/12/java-concurrent.html">
+    <link rel="shortcut icon" href='/favicon.ico'  type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    
+    
+        <link href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" rel="stylesheet">
+    
+    
+    
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://xujimmy.com">
+                        JimmyXu的小站
+                    </a>
+                
+                <p class="description">inner peace</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="http://xujimmy.com">首页</a>
+                    
+                    <a  href="http://xujimmy.com/archives.html" title="归档">归档</a>
+                    
+                    <a  href="http://xujimmy.com/about.html" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    <style type="text/css">
+    .post-toc {
+        position: fixed;
+        width: 200px;
+        margin-left: -210px;
+        padding: 5px 10px;
+        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+        font-size: 12px;
+        border: 1px solid rgba(0, 0, 0, .07);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.98);
+        background-clip: padding-box;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        word-wrap: break-word;
+        white-space: nowrap;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 999;
+        cursor: pointer;
+        max-height: 70%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .post-toc .post-toc-title {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .post-toc .post-toc-content {
+        font-size: 15px;
+    }
+
+    .post-toc .post-toc-content>nav>ul {
+        margin: 10px 0;
+    }
+
+    .post-toc .post-toc-content ul {
+        padding-left: 20px;
+        list-style: square;
+        margin: 0.5em;
+        line-height: 1.8em;
+    }
+
+    .post-toc .post-toc-content ul ul {
+        padding-left: 15px;
+        display: none;
+    }
+
+    @media print,
+    screen and (max-width:1057px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+<div class="post-toc" style="position: absolute; top: 188px;">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#heading">三个问题</a></li>
+    <li><a href="#heading1">同步的方法</a>
+      <ul>
+        <li><a href="#synchronized">synchronized</a></li>
+        <li><a href="#volatile">Volatile</a></li>
+        <li><a href="#reentrantlock">ReentrantLock</a></li>
+        <li><a href="#atomic">Atomic</a></li>
+        <li><a href="#threadlocal">ThreadLocal</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading2">总结</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postToc = $(".post-toc");
+        if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if(leftPos<220){
+                postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})
+            }
+
+            var t = postToc.offset().top - 20,
+                a = {
+                    start: {
+                        position: "absolute",
+                        top: t
+                    },
+                    process: {
+                        position: "fixed",
+                        top: 20
+                    },
+                };
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                e < t ? postToc.css(a.start) : postToc.css(a.process)
+            })
+        }
+    })
+</script>
+    <article class="post">
+        <header>
+            <h1 class="post-title">Java 中的同步方法</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2018年10月12日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='/categories/tech'>Tech</a></span>
+            
+        </div>
+        
+        
+        
+                    <span class="post-meta">| 5258 字</span><span class="post-meta"> | 阅读约 11 分钟</span>
+            
+        
+        <div class="post-content">
+            <p>说到 java 中的同步，必然少不了耳熟能详的<code>synchronized</code>，<code>ReentrantLock</code>，以及可能用过但不怎么常见的<code>Atomic</code>，<code>volatile</code>，本篇即简单介绍下他们的区别和使用场景。</p>
+<h2 id="heading">三个问题</h2>
+<p>首先要明确一个事实：同步是为了解决多线程的并发问题，但并不是说只要有多线程，就一定会有并发问题。多线程环境下，如果你只是调用了一些方法，但没有访问共享的变量或内存，就不存在并发问题，注意：一定是<strong>共享的变量或内存</strong>。在 java 里，这样的变量一般是在堆和方法区中存在，他们可以被多个线程同时访问到。**换句话说，堆和方法区中的变量，需要考虑并发问题，比如并发访问某个对象的实例属性，静态属性，还有数组的元素等，就是典型的需要考虑并发问题场景。而方法的参数，方法体中定义的局部变量是放在栈上的，属于线程私有，可以不用考虑并发问题。**举个例子，看下面代码：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Variables</span> <span style="color:#f92672">{</span>
+
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> a<span style="color:#f92672">;</span>
+
+  <span style="color:#66d9ef">private</span> String b<span style="color:#f92672">;</span>
+
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">func</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> c<span style="color:#f92672">)</span><span style="color:#f92672">:</span>
+       <span style="color:#66d9ef">int</span> d<span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>上面定义的类，其中，a 变量是类的静态变量，属于类变量，存放在方法区，b 是成员变量，存放在堆中，而 c 和 d 是局部变量，存放在栈中，因此多线程环境下，对 a 和 b 的操作需要考虑并发问题，而 c 和 d 的操作，则不需要考虑。</p>
+<p>那么并发问题需要解决什么呢？通常，解决的问题有三个：<strong>原子性</strong>，<strong>可见性</strong>，<strong>有序性</strong></p>
+<ol>
+<li>
+<p>原子性：
+即一个操作或者多个操作，是一个不可分割的部分，要么全部执行成功并且执行的过程不会被任何因素打断，要么就都不执行。这个很好理解，一般教科书上，都会引用银行转账的例子，来说明原子性。即扣钱操作和加钱操作应该是不可分割的，不能出现钱扣了，但对方没收到钱，或者收到钱了，但钱没扣。在数据库事务中，也会看到原子性的影子。</p>
+</li>
+<li>
+<p>可见性：
+　　可见性是指当多个线程访问同一个变量时，一个线程修改了这个变量的值，其他线程能够立即看得到修改的值。一般计算机 CPU 都会有高速缓存，当某个线程对一个变量进行修改，修改后的值不会马上写入到主存，而是会放入到执行该线程的 CPU 高速缓存中。这样可能导致其他 CPU 上的线程看不到这个变量的修改，因为它读的仍然是自己 CPU 上的高速缓存里的值。</p>
+</li>
+<li>
+<p>有序性：
+即程序执行的顺序按照代码的先后顺序执行。我们在写一段代码，当 JVM 执行该代码时，并不一定会按照我们代码写的先后顺序去执行，可能会发生指令重排序。什么是指令重排序？一般来说，处理器为了提高程序运行效率，可能会对输入代码进行优化，它不保证程序中各个语句的执行先后顺序同代码中的顺序一致，但是它会保证程序最终执行结果和代码顺序执行的结果是一致的。</p>
+</li>
+</ol>
+<p>**要想并发程序正确地执行，必须要保证原子性、可见性以及有序性。只要有一个没有被保证，就有可能会导致程序运行不正确。**那么怎么保证这三点呢？</p>
+<h2 id="heading1">同步的方法</h2>
+<p>我们看看下面几段代码</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// 代码1
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Sample</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> count <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+  <span style="color:#66d9ef">synchronized</span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">increment</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    count<span style="color:#f92672">+</span><span style="color:#f92672">+</span><span style="color:#f92672">;</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e">// 代码2
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Sample</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> AtomicInteger count <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> AtomicInteger<span style="color:#f92672">(</span>0<span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">increment</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    count<span style="color:#f92672">.</span><span style="color:#a6e22e">getAndIncrement</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e">// 代码3
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Sample</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">volatile</span> <span style="color:#66d9ef">int</span> count <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">synchronized</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">increment</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    count<span style="color:#f92672">+</span><span style="color:#f92672">+</span><span style="color:#f92672">;</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>以上的三个 increment 方法，均是对 count 字段做加 1 操作，哪些可以在并发场景下正确运行？看完这篇文章，相信大家能回答这个问题。</p>
+<h3 id="synchronized">synchronized</h3>
+<p><code>synchronized</code>属于 java 中的关键字，是最常用的锁，也是一种独占锁，或者称为互斥，这意味着，<strong>当你使用<code>synchronized</code>关键字对代码进行同步后，如果有多个线程想执行这段代码，这些线程会变成串行</strong>，即如果当前有线程在执行这段代码，其他的线程只能等待。<code>synchronized</code>可以保证并发编程中要求的原子性，可见性和有序性。</p>
+<p>对于同步代码块，<code>synchronized</code>是通过获取对象的监视锁，即<code>monitor</code>来实现同步，java 中，每个对象都有一个<code>monitor</code>，或者称为监视器，被<code>synchronized</code>包裹的代码编译成字节码后，会在代码块前后，引入<code>monitorenter</code>和<code>monitorexit</code>的字节码来实现的，JVM 规定，当<code>monitor</code>被占用时，代码块即会处于锁定状态，其他线程无法访问。像<code>wait/notify</code>等方法也依赖于<code>monitor</code>。对于同步方法，JVM 是采用<code>ACC_SYNCHRONIZED</code>标记符来实现同步的，即一个线程想调用某方法，会检查是否有<code>ACC_SYNCHRONIZED</code>，如果有设置，则需要先获得监视器锁，然后才能执行方法。</p>
+<p>在类的任意位置都可以使用<code>synchronized</code>对想要同步的代码进行同步，如类的实例方法，静态方法，实例对象，Class 对象，代码块等。在上例中，我们对 Sample 类的静态方法 increment() 做了同步，锁住的是当前的 Sample 类对应的 class 对象，再来看看<code>synchronized</code>在代码中不同位置的使用方法：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SyncCounter</span> <span style="color:#66d9ef">implements</span> Runnable <span style="color:#f92672">{</span>
+	<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> counter <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+  Object syncObj <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Object<span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+
+	<span style="color:#75715e">// 同步实例方法
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">synchronized</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">increase</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		counter<span style="color:#f92672">+</span><span style="color:#f92672">+</span><span style="color:#f92672">;</span>
+	<span style="color:#f92672">}</span>
+	<span style="color:#75715e">// 同步静态方法，锁住的是 SyncCounter.class对象
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">synchronized</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">staticIncrease</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		counter<span style="color:#f92672">+</span><span style="color:#f92672">+</span><span style="color:#f92672">;</span>
+	<span style="color:#f92672">}</span>
+
+	<span style="color:#a6e22e">@Override</span>
+	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		<span style="color:#75715e">// 同步代码块
+</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">synchronized</span> <span style="color:#f92672">(</span>syncObj<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+		<span style="color:#75715e">// doSomething();
+</span><span style="color:#75715e"></span>		<span style="color:#f92672">}</span>
+	<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+</code></pre></div><p>上述代码中，分别在不同的地方使用了<code>synchronized</code>。为了执行 doSomething，必须获得对象 syncObj 的锁，syncObj 可以是类实例或者是类，典型的如 this，当两个并发线程访问同一个对象 object 中的这个 synchronized(this)同步代码块时，同一时间内只能有一个线程得到执行。另一个线程必须等待当前线程执行完这个代码块以后才能执行该代码块。但仍然可以访问该 object 中的非synchronized(this)同步代码块。</p>
+<p>同时，<code>synchronized</code>也是一个可重入锁，即如果一个线程持有了对象锁，那么当它再次想访问锁住的临界资源时，将可以成功。</p>
+<h3 id="volatile">Volatile</h3>
+<p>提到<code>volatile</code>，一般都会提到可见性，所以在处理同步问题上它大显作用，那么<code>volatile</code>是如何保证可见性的呢？ 当对<code>volatile</code>变量做写入操作时，在 JVM 字节码中，你会看到一条 lock 前缀的指令，这是告诉 CPU，请立即将这个变量写入到主内存，以保证其他 CPU 重新从内存中读取这个新值，然后放入自己的缓存，这样就保证了可见性。</p>
+<p><code>volatile</code>的开销比 <code>synchronized</code>小、使用成本更低。但<code>volatile</code>只能用来修饰变量，而不能修饰方法或者代码块，可以把<code>volatile</code>看做是一个轻量级的<code>synchronized</code>，但仅此而已，<code>synchronized</code>不仅保证可见性，还能保证原子性，而<code>volatile</code>是不能保证原子性的。它不适合在对该变量的写操作依赖于变量本身自己。举个最简单的栗子：在进行计数操作时，如</p>
+<pre><code>count++
+</code></pre><p>实际是</p>
+<pre><code>count= count + 1;
+</code></pre><p>count 最终的值依赖于它本身的值。所以使用<code>volatile</code>修饰的变量在进行这么一系列的操作的时候，仍然会有并发的问题。而像</p>
+<pre><code>flag = true;
+</code></pre><p>这样的语句，由于 flag 的值不会依赖自身，因此这种情况下，<code>volatile</code>可以代替<code>synchronized</code>。通常来说，如果一个变量被声明为<code>volatile</code>，仅仅是表明：</p>
+<ol>
+<li>保证了不同线程对这个变量进行操作时的可见性，即一个线程修改了这个变量的值，这新值对其他线程来说是立即可见的</li>
+<li>禁止进行指令重排序</li>
+</ol>
+<p>而要使用<code>volatile</code>，必须具备以下2个条件：</p>
+<ol>
+<li>对变量的写操作不依赖于当前值，如像上面那样，给一个标志变量 flag 赋值。</li>
+<li>变量不需要与其他状态变量共同参与不变约束。</li>
+</ol>
+<p>其他情况下，仍然是需要用<code>synchronized</code>的。</p>
+<h3 id="reentrantlock">ReentrantLock</h3>
+<p>上面说的<code>synchronized</code>，是一个严格的排它锁，一方面，没有抢到锁的线程，会一直等待锁的释放；另一方面，当锁释放时，所有的线程都会参与争抢。如果我们需要一种遵守“先来后到”规则的公平锁，或者想给那些等待锁的线程一个超时时间，<code>synchronized</code>就无法满足需求了，这时可以使用<code>ReentrantLock</code>，在基本用法上，<code>ReentrantLock</code>和<code>synchronized</code>很相似，前者是一个实现了<code>Lock</code>接口的可重入锁，因此需要调用 lock() 和 unlock() 来完成锁的申请和释放，重要的是，<code>ReentrantLock</code>具备几个<code>synchronized</code>没有的高级功能：<strong>等待可中断</strong>，<strong>公平锁</strong>，<strong>绑定多个条件</strong>。而在性能上，二者却基本没有什么差别，<code>ReentrantLock</code>甚至比<code>synchronized</code>更优一点。</p>
+<p>那么是不是说可以抛弃<code>synchronized</code>，而只用<code>ReentrantLock</code>呢？不然，首先，在使用方式上，<code>synchronized</code>更简洁紧凑，用户几乎不用关心锁的释放，即使是被同步的代码中抛出了异常，也可以自动释放锁。而<code>ReentrantLock</code>在同步结束后，需要显示的调用 unlock()，通常会在 finally 块中调用。其次，<code>synchronized</code>为许多开发者所熟悉，并且许多程序框架已经使用了它，如果将两种机制混合，既容易使人迷惑，也容易发生错误。因此，除非你有特别的理由，而<code>synchronized</code>无法满足，比如上述说的那三点。否则，还是应该优先考虑使用<code>synchronized</code>。</p>
+<h3 id="atomic">Atomic</h3>
+<p>上面提的<code>synchronized</code>和<code>ReentrantLock</code>，可以认为是阻塞型同步方式，或者说悲观锁。在锁的申请，线程调度和恢复过程中，存在着很大开销。<code>volatile</code>虽然是一种更轻量级的同步机制，但如上面所说，它无法保证原子性。有没有一种类似于<code>volatile</code>，又能保证原子性的机制呢？<strong>Atomic</strong>类型登场了。从字面意思来讲，就知道这是一种原子类型，可以实现同步。在说<code>Atomic</code>之前，有必要复习下<strong>CAS</strong>的概念，CAS(compare and swap)，即<strong>比较并交换</strong>，这是计算机领域中很典型而又很重要的无锁思想，乐观锁通常用的就是 CAS 思想，如 MySQL 中的 MVCC，redis 中的 Watch ，都是用的 CAS 方式实现乐观锁。CAS 操作是通过将内存中的值与指定数据进行比较，当数值一样时，将内存中的数据替换为新值，它是大多数 CPU 架构直接支持的原子指令。因此，我们说 CAS 操作是原子性的，是因为 CPU 指令来保证它是原子的，它是由硬件来提供。</p>
+<p><code>Atomic</code>类型就是 JVM 中支持 CAS 的一种实现。如<code>AtomicInteger`,</code>AtomicLong<code>等。具体在 </code>java.util.concurrent.atomic`这个包下</p>
+<p>在上述代码中，我们看下 <code>getAndIncrement()</code>方法的实现：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getAndIncrement</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> unsafe<span style="color:#f92672">.</span><span style="color:#a6e22e">getAndAddInt</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">,</span> valueOffset<span style="color:#f92672">,</span> 1<span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><p>再看看 getAndAddInt 方法：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getAndAddInt</span><span style="color:#f92672">(</span>Object var1<span style="color:#f92672">,</span> <span style="color:#66d9ef">long</span> var2<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> var4<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">int</span> var5<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">do</span> <span style="color:#f92672">{</span>
+            var5 <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getIntVolatile</span><span style="color:#f92672">(</span>var1<span style="color:#f92672">,</span> var2<span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span> <span style="color:#66d9ef">while</span><span style="color:#f92672">(</span><span style="color:#f92672">!</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">compareAndSwapInt</span><span style="color:#f92672">(</span>var1<span style="color:#f92672">,</span> var2<span style="color:#f92672">,</span> var5<span style="color:#f92672">,</span> var5 <span style="color:#f92672">+</span> var4<span style="color:#f92672">)</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+
+        <span style="color:#66d9ef">return</span> var5<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><p>其中，compareAndSawpInt 方法原型如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// 第一和第二个参数代表对象的实例以及地址，第三个参数代表期望值，第四个参数代表更新值
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">native</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">compareAndSwapInt</span><span style="color:#f92672">(</span>Object var1<span style="color:#f92672">,</span> <span style="color:#66d9ef">long</span> var2<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> var4<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> var5<span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+</code></pre></div><p>注意到上面有个 unsafe，这是 sun.misc.Unsafe 类的实例，在 JDK 的并发包中，很多地方都用到了它，它提供了一些底层操作的能力，它设计出来是给 JDK 中的源码使用的，比如 AQS、ConcurrentHashMap 等，这个 Unsafe 类不是给我们的代码使用的，是给 JDK 源码使用的，最后它调用的是一个 native 方法，底层跟硬件相关，生成的指令可以保证原子性。</p>
+<blockquote>
+<p>如果是 JDK8，推荐使用 LongAdder 对象，比 AtomicLong 性能更好(减少乐观锁的重试次数)。</p>
+</blockquote>
+<h3 id="threadlocal">ThreadLocal</h3>
+<p>最后我们来说说<code>ThreadLocal</code>，其实这个类的出现并不是用来解决在多线程并发环境下资源的共享问题的，它和上面几个同步方式不一样，上面的关键字都是从线程外来保证变量的一致性，这样使得多个线程访问的变量具有一致性，可以更好的体现出资源的共享。</p>
+<p>而<code>ThreadLocal</code>的设计，并不是解决资源共享的问题，而是用来提供线程内的局部变量，这样每个线程都自己管理自己的局部变量，别的线程操作的数据不会对我产生影响，互不影响，所以不存在解决资源共享这么一说，如果是解决资源共享，那么其它线程操作的结果必然我需要获取到，而<code>ThreadLocal</code>则是自己管理自己的，相当于封装在<code>Thread</code>内部了，供线程自己管理。来看个例子</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ThreadLocalDemo</span> <span style="color:#f92672">{</span>
+	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> ThreadLocal<span style="color:#f92672">&lt;</span>string<span style="color:#f92672">&gt;</span> threadLocal <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ThreadLocal<span style="color:#f92672">&lt;</span>string<span style="color:#f92672">&gt;</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">{</span>
+        <span style="color:#a6e22e">@Override</span>
+        <span style="color:#66d9ef">protected</span> String <span style="color:#a6e22e">initialValue</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;hello&#34;</span><span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span><span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyRunnable</span> <span style="color:#66d9ef">implements</span> Runnable<span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> num<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">MyRunnable</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> num<span style="color:#f92672">)</span><span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">num</span> <span style="color:#f92672">=</span> num<span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span>
+        <span style="color:#a6e22e">@Override</span>
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            threadLocal<span style="color:#f92672">.</span><span style="color:#a6e22e">set</span><span style="color:#f92672">(</span>String<span style="color:#f92672">.</span><span style="color:#a6e22e">valueOf</span><span style="color:#f92672">(</span>num<span style="color:#f92672">)</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;threadLocalValue:&#34;</span><span style="color:#f92672">+</span>threadLocal<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+ 
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[</span><span style="color:#f92672">]</span> args<span style="color:#f92672">)</span><span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">new</span> Thread<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> MyRunnable<span style="color:#f92672">(</span>1<span style="color:#f92672">)</span><span style="color:#f92672">)</span><span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">new</span> Thread<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> MyRunnable<span style="color:#f92672">(</span>2<span style="color:#f92672">)</span><span style="color:#f92672">)</span><span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">new</span> Thread<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> MyRunnable<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span><span style="color:#f92672">)</span><span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>打印结果：</p>
+<pre><code>threadLocalValue:1
+threadLocalValue:3
+threadLocalValue:2
+</code></pre><p><strong>值得注意的一点</strong>：<code>ThreadLocal</code>在线程使用完毕后，我们应该手动调用<code>remove</code>方法，移除它内部的值，这样可以防止内存泄露，当然还有就是将<code>ThreadLocal</code>设为<code>static</code>。</p>
+<p><code>ThreadLocal</code>内部有一个静态类<code>ThreadLocalMap</code>，使用到<code>ThreadLocal</code>的线程会与<code>ThreadLocalMap</code>绑定，维护着这个<code>Map</code>对象，而这个<code>ThreadLocalMap</code>的作用是映射当前<code>ThreadLocal</code>对应的值，<code>key</code>为当前<code>ThreadLocal</code>的弱引用。</p>
+<h2 id="heading2">总结</h2>
+<ul>
+<li>java 多线程需要考虑并发问题，只要是原子性，可见性，有序性没有同时得到保证，就会产生并发问题，需要做同步。</li>
+<li>做同步时，优先考虑使用<code>synchronized</code>，如有特殊情况，再做优化，如考虑使用<code>ReentrantLock</code>。</li>
+<li>当满足<code>volatile</code>的使用条件时，可以用<code>volatile</code>，来实现轻量级锁。</li>
+<li>由于 <code>Atomic</code> 是通过 CAS 来实现同步，是一种非阻塞解决并发的方式，不会锁住当前线程，效率会更高，当然它也会存在 CAS 所带来的 ABA 问题，另一方面，由于存在重试机制，并发越高，失败重试的次数越多，极大增加 CPU 开销，不适合于竞争非常频繁的场景。</li>
+<li>ThreadLocal 并不解决线程间共享数据的问题，它适用于变量在线程间隔离且在方法间共享的场景。</li>
+</ul>
+<h4 id="heading3">参考：</h4>
+<ul>
+<li><a href="https://www.cnblogs.com/dolphin0520/p/3920373.html">https://www.cnblogs.com/dolphin0520/p/3920373.html</a></li>
+<li><a href="https://www.2cto.com/kf/201601/486898.html">https://www.2cto.com/kf/201601/486898.html</a></li>
+<li><a href="https://emacsist.github.io/2017/07/04/java-%E4%B8%AD-%E7%9A%84-synchronized-%E4%B8%8E-atomic/">https://emacsist.github.io/2017/07/04/java-%E4%B8%AD-%E7%9A%84-synchronized-%E4%B8%8E-atomic/</a></li>
+<li><a href="http://www.hollischuang.com/archives/1883">http://www.hollischuang.com/archives/1883</a></li>
+<li><a href="http://www.jasongj.com/java/threadlocal/">http://www.jasongj.com/java/threadlocal/</a></li>
+<li>《java并发编程实战》</li>
+</ul>
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="http://xujimmy.com">JimmyXu</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="http://xujimmy.com/2018/10/12/java-concurrent.html">http://xujimmy.com/2018/10/12/java-concurrent.html</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
+</div>
+<br/>
+
+
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/2018/06/20/java-collections-generics-best-practices.html">Java 中集合和泛型最佳实践</a></li>
+        
+        <li><a href="/2018/06/07/my-10-years.html">我的这 10 年</a></li>
+        
+        <li><a href="/2018/04/08/zookeeper.html">关于 zookeeper 的一些原理</a></li>
+        
+        <li><a href="/2018/03/22/about-mathematical-formula.html">数学上的一些经典片段</a></li>
+        
+        <li><a href="/2018/03/16/start-rabbitmq.html">RabbitMQ 的简单使用</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            没有标签
+            
+        </div>
+    </article>
+    
+    
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "hbxjw119/hbxjw119.github.io"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+</div>
+
+                    <footer id="footer">
+    <div>
+        &copy; 2021 <a href="http://xujimmy.com">JimmyXu的小站 By JimmyXu</a>
+        
+    </div>
+    <br />
+    <div>
+        <div class="github-badge">
+            <a href="https://gohugo.io/" target="_black" rel="nofollow"><span class="badge-subject">Powered by</span><span class="badge-value bg-blue">Hugo</span></a>
+        </div>
+        <div class="github-badge">
+            <a href="https://www.flysnow.org/" target="_black"><span class="badge-subject">Design by</span><span class="badge-value bg-brightgreen">飞雪无情</span></a>
+        </div>
+        <div class="github-badge">
+            <a href="https://github.com/flysnow-org/maupassant-hugo" target="_black"><span class="badge-subject">Theme</span><span class="badge-value bg-yellowgreen">Maupassant</span></a>
+        </div>
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script><script src="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+
+
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='//www.google.com/search' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://xujimmy.com">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://xujimmy.com/2021/05/29/about-painting-arts.html" title="谈谈美术绘画">谈谈美术绘画</a>
+    </li>
+    
+    <li>
+        <a href="http://xujimmy.com/2020/07/12/introduction-virtual-memory.html" title="虚拟内存简介">虚拟内存简介</a>
+    </li>
+    
+    <li>
+        <a href="http://xujimmy.com/2020/05/22/poison-detect.html" title="由病毒检测想到的一种面试题">由病毒检测想到的一种面试题</a>
+    </li>
+    
+    <li>
+        <a href="http://xujimmy.com/2019/12/11/use-proto.html" title="使用 protobuf">使用 protobuf</a>
+    </li>
+    
+    <li>
+        <a href="http://xujimmy.com/2019/09/29/computer-memory.html" title="程序员需要知道的数量级">程序员需要知道的数量级</a>
+    </li>
+    
+    <li>
+        <a href="http://xujimmy.com/2019/08/11/schedule-in-cloud.html" title="云计算中的资源调度">云计算中的资源调度</a>
+    </li>
+    
+    <li>
+        <a href="http://xujimmy.com/2019/07/21/pxe-install-os.html" title="使用 PXE 从网络安装操作系统">使用 PXE 从网络安装操作系统</a>
+    </li>
+    
+    <li>
+        <a href="http://xujimmy.com/2019/06/27/what-is-io-multiplexing.html" title="什么是 I/O 多路复用">什么是 I/O 多路复用</a>
+    </li>
+    
+    <li>
+        <a href="http://xujimmy.com/2019/05/29/java-future-and-executor.html" title="Java 中 Future 和异步任务">Java 中 Future 和异步任务</a>
+    </li>
+    
+    <li>
+        <a href="http://xujimmy.com/2019/04/23/git-pull-and-git-rebase.html" title="git pull 和 git rebase">git pull 和 git rebase</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title"><a href='/categories/'>分类</a></h3>
+<ul class="widget-list">
+    
+    <li><a href="http://xujimmy.com/categories/life.html">Life (5)</a></li>
+    
+    <li><a href="http://xujimmy.com/categories/linux.html">Linux (7)</a></li>
+    
+    <li><a href="http://xujimmy.com/categories/math.html">Math (2)</a></li>
+    
+    <li><a href="http://xujimmy.com/categories/tech.html">Tech (38)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title"><a href='/tags/'>标签</a></h3>
+<div class="tagcloud">
+    
+    <a href="http://xujimmy.com/tags/acme.html">acme</a>
+    
+    <a href="http://xujimmy.com/tags/algorithm.html">algorithm</a>
+    
+    <a href="http://xujimmy.com/tags/awk.html">awk</a>
+    
+    <a href="http://xujimmy.com/tags/book.html">book</a>
+    
+    <a href="http://xujimmy.com/tags/collection.html">collection</a>
+    
+    <a href="http://xujimmy.com/tags/cookie.html">Cookie</a>
+    
+    <a href="http://xujimmy.com/tags/csdn.html">csdn</a>
+    
+    <a href="http://xujimmy.com/tags/design-pattern.html">design pattern</a>
+    
+    <a href="http://xujimmy.com/tags/docker.html">docker</a>
+    
+    <a href="http://xujimmy.com/tags/find.html">find</a>
+    
+    <a href="http://xujimmy.com/tags/fpm.html">fpm</a>
+    
+    <a href="http://xujimmy.com/tags/gevent.html">gevent</a>
+    
+    <a href="http://xujimmy.com/tags/git.html">git</a>
+    
+    <a href="http://xujimmy.com/tags/go.html">go</a>
+    
+    <a href="http://xujimmy.com/tags/grafana.html">grafana</a>
+    
+    <a href="http://xujimmy.com/tags/grep.html">grep</a>
+    
+    <a href="http://xujimmy.com/tags/http.html">http</a>
+    
+    <a href="http://xujimmy.com/tags/httpie.html">httpie</a>
+    
+    <a href="http://xujimmy.com/tags/https.html">HTTPS</a>
+    
+    <a href="http://xujimmy.com/tags/influxdb.html">influxdb</a>
+    
+    <a href="http://xujimmy.com/tags/java.html">Java</a>
+    
+    <a href="http://xujimmy.com/tags/jvm.html">JVM</a>
+    
+    <a href="http://xujimmy.com/tags/kvm.html">KVM</a>
+    
+    <a href="http://xujimmy.com/tags/linux.html">linux</a>
+    
+    <a href="http://xujimmy.com/tags/lnmp.html">lnmp</a>
+    
+    <a href="http://xujimmy.com/tags/math.html">math</a>
+    
+    <a href="http://xujimmy.com/tags/monitor.html">monitor</a>
+    
+    <a href="http://xujimmy.com/tags/mq.html">MQ</a>
+    
+    <a href="http://xujimmy.com/tags/mysql.html">mysql</a>
+    
+    <a href="http://xujimmy.com/tags/nginx.html">nginx</a>
+    
+    <a href="http://xujimmy.com/tags/phantomjs.html">PhantomJS</a>
+    
+    <a href="http://xujimmy.com/tags/php.html">php</a>
+    
+    <a href="http://xujimmy.com/tags/python.html">python</a>
+    
+    <a href="http://xujimmy.com/tags/redis.html">redis</a>
+    
+    <a href="http://xujimmy.com/tags/session.html">Session</a>
+    
+    <a href="http://xujimmy.com/tags/shell.html">shell</a>
+    
+    <a href="http://xujimmy.com/tags/sort.html">sort</a>
+    
+    <a href="http://xujimmy.com/tags/tcp.html">tcp</a>
+    
+    <a href="http://xujimmy.com/tags/web.html">web</a>
+    
+    <a href="http://xujimmy.com/tags/xargs.html">xargs</a>
+    
+    <a href="http://xujimmy.com/tags/zookeeper.html">zookeeper</a>
+    
+    <a href="http://xujimmy.com/tags/zsh.html">zsh</a>
+    
+    <a href="http://xujimmy.com/tags/%E4%B9%A6%E5%8D%95.html">书单</a>
+    
+    <a href="http://xujimmy.com/tags/%E4%BA%8C%E8%BF%9B%E5%88%B6.html">二进制</a>
+    
+    <a href="http://xujimmy.com/tags/%E5%85%AC%E4%BC%97%E5%8F%B7.html">公众号</a>
+    
+    <a href="http://xujimmy.com/tags/%E5%85%AC%E5%BC%8F.html">公式</a>
+    
+    <a href="http://xujimmy.com/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F.html">分布式系统</a>
+    
+    <a href="http://xujimmy.com/tags/%E5%8C%97%E4%BA%AC.html">北京</a>
+    
+    <a href="http://xujimmy.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.html">操作系统</a>
+    
+    <a href="http://xujimmy.com/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97.html">消息队列</a>
+    
+    <a href="http://xujimmy.com/tags/%E7%BD%91%E7%BB%9C.html">网络</a>
+    
+    <a href="http://xujimmy.com/tags/%E8%89%BA%E6%9C%AF%E7%BE%8E%E6%9C%AF%E4%B8%AA%E4%BA%BA.html">艺术，美术，个人</a>
+    
+    <a href="http://xujimmy.com/tags/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98.html">虚拟内存</a>
+    
+    <a href="http://xujimmy.com/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA.html">虚拟机</a>
+    
+    <a href="http://xujimmy.com/tags/%E8%AE%B0%E8%B4%A6.html">记账</a>
+    
+    <a href="http://xujimmy.com/tags/%E9%98%BF%E9%87%8C%E4%BA%91.html">阿里云</a>
+    
+    <a href="http://xujimmy.com/tags/%E9%9A%8F%E6%83%B3.html">随想</a>
+    
+    <a href="http://xujimmy.com/tags/%E9%9D%A2%E8%AF%95.html">面试</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://xujimmy.com/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

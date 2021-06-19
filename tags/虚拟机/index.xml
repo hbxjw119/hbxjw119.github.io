@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虚拟机 on JimmyXu的小站</title>
+    <link>http://xujimmy.com/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA.html</link>
+    <description>Recent content in 虚拟机 on JimmyXu的小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 01 Apr 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://xujimmy.com/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Docker 和 KVM 虚拟机</title>
+      <link>http://xujimmy.com/2019/04/01/docker-and-vm.html</link>
+      <pubDate>Mon, 01 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2019/04/01/docker-and-vm.html</guid>
+      <description>&lt;p&gt;近几年，随着微服务概念和容器化思想的风(chao)靡(zuo)，Docker 技术成了各大厂和各种吹牛大会上的香饽饽，一提到 Docker，就是各种优势，大有在云计算领域一统江湖的趋势。但是 Docker 真的是万精油吗？本文简单介绍下 Docker 的一些底层技术，以及和传统虚拟机的一些差异。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

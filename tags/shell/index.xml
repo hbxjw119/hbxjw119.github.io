@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>shell on JimmyXu的小站</title>
+    <link>http://xujimmy.com/tags/shell.html</link>
+    <description>Recent content in shell on JimmyXu的小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 16 Jan 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://xujimmy.com/tags/shell/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>几条比较好用又经常忘记的 shell 命令</title>
+      <link>http://xujimmy.com/2017/01/16/linux-command.html</link>
+      <pubDate>Mon, 16 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/01/16/linux-command.html</guid>
+      <description>&lt;p&gt;linux命令行中，最常用的命令就那么几条，有时写了长长的一条命令，发现写错、漏写，想移动光标，如果直接按←，→，不仅慢，还不能体现出我们作为linux老鸟的优（zhuang）雅（bi），因此记下几个比较好用的命令，以作备忘&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

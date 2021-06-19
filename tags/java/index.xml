@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java on JimmyXu的小站</title>
+    <link>http://xujimmy.com/tags/java.html</link>
+    <description>Recent content in Java on JimmyXu的小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 24 Mar 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://xujimmy.com/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Java 中常用的监控和故障处理命令行工具</title>
+      <link>http://xujimmy.com/2019/03/24/java-analyzer-tools.html</link>
+      <pubDate>Sun, 24 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2019/03/24/java-analyzer-tools.html</guid>
+      <description>&lt;p&gt;我们常常需要获取 Java 程序运行过程中的一些执行情况，如执行路径，GC 情况，堆栈信息等。JDK 给我们提供了一些简单但却很有用的命令行工具，本文介绍下这些工具的使用和参数说明，用于备忘。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Java 中集合和泛型最佳实践</title>
+      <link>http://xujimmy.com/2018/06/20/java-collections-generics-best-practices.html</link>
+      <pubDate>Wed, 20 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2018/06/20/java-collections-generics-best-practices.html</guid>
+      <description>&lt;p&gt;最近看 Java，读到一篇比较好的英文文章，特翻译了下记录下来。原文链接在&lt;a href=&#34;http://www.codejava.net/java-core/collections/18-java-collections-and-generics-best-practices&#34;&gt;这里&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;集合类和泛型是 Java 中比较常用的技术，也是面试时经常问到的点。本篇文章向大家分享的，是一个资深 Java 开发者多年的实战经验。通过本篇文章，你会了解怎么高效而优雅的使用集合、泛型，而不是仅仅停留在 “just work”。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

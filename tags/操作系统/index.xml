@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>操作系统 on JimmyXu的小站</title>
+    <link>http://xujimmy.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.html</link>
+    <description>Recent content in 操作系统 on JimmyXu的小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 12 Jul 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://xujimmy.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>虚拟内存简介</title>
+      <link>http://xujimmy.com/2020/07/12/introduction-virtual-memory.html</link>
+      <pubDate>Sun, 12 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2020/07/12/introduction-virtual-memory.html</guid>
+      <description>&lt;p&gt;虚拟内存是计算机领域中一个很重要的概念，不管是对于日常工作排查问题，还是技术面试，出现的频率都很高。之前对这块内容的理解一直只存在于头脑里，现在把它拿出来，形成书面记录。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

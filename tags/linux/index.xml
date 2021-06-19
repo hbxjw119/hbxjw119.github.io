@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>linux on JimmyXu的小站</title>
+    <link>http://xujimmy.com/tags/linux.html</link>
+    <description>Recent content in linux on JimmyXu的小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 19 Nov 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://xujimmy.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>linux 命令之--find</title>
+      <link>http://xujimmy.com/2017/11/19/linux-find.html</link>
+      <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/11/19/linux-find.html</guid>
+      <description>&lt;p&gt;&lt;code&gt;find&lt;/code&gt;命令也是 linux 环境下使用频繁、功能强大的查找命令，基本每天的工作都会用到它，这里对&lt;code&gt;find&lt;/code&gt;命令做个总结，作为备忘&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>由 lnmp 一键安装脚本所引发的错误</title>
+      <link>http://xujimmy.com/2017/09/12/lnmp-debug.html</link>
+      <pubDate>Tue, 12 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/09/12/lnmp-debug.html</guid>
+      <description>&lt;p&gt;在装&lt;a href=&#34;https://lnmp.org/&#34;&gt;lnmp&lt;/a&gt;全家桶时，有时为了方便，会直接用一键安装脚本，一条命令，就把所有的环境都装好了，简单省事，但有时出现配置错误，也不太好排查，分享一个遇到的问题。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>TCP 和 HTTP</title>
+      <link>http://xujimmy.com/2017/09/10/tcp-http.html</link>
+      <pubDate>Sun, 10 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/09/10/tcp-http.html</guid>
+      <description>&lt;p&gt;在经典的计算机网络 ISO 七层模型中，最接近用户的，是应用层，其次是传输层。应用层中，HTTP 是最重要的协议之一，而 TCP，则是传输层中最重要的协议之一，这两类协议可以说是现代互联网的基石。无论是组网，编码，网络故障定位，面试，这两类协议都是相当重要的，网上已经有很多相关的分析文章，这里也整理下我关于这两个协议的相关理解。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>手动编译安装nginx</title>
+      <link>http://xujimmy.com/2017/08/20/install-nginx.html</link>
+      <pubDate>Sun, 20 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/08/20/install-nginx.html</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://nginx.org/&#34;&gt;Nginx&lt;/a&gt;是一个高性能的HTTP和反向代理服务器，目前已经成为Web开发部署的标配了，基本拿到一台机器或者vps，都要装上nginx，但由于很多Linux发行版的包管理里面的源没有nginx，导致用&lt;code&gt;yum&lt;/code&gt;或者&lt;code&gt;apt&lt;/code&gt;都无法安装，需要手动配置，这里记录两种方法安装nginx&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用 zsh，重新打造你的 Linux 工作环境</title>
+      <link>http://xujimmy.com/2017/06/20/linux-zsh.html</link>
+      <pubDate>Tue, 20 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/06/20/linux-zsh.html</guid>
+      <description>&lt;p&gt;对于经常在 Linux 环境下干活的码农们，shell 可以说是我们使用频率最高的程序了，shell 为我们和机器间建立了一个桥梁，它给我们提供一系列命令，我们就可以和机器进行愉快的交流了，比如写代码用&lt;code&gt;vim&lt;/code&gt;命令，查找文件使用&lt;code&gt;find`,&lt;/code&gt;grep&lt;code&gt;命令，版本控制使用&lt;/code&gt;git&lt;code&gt;，查看机器性能使用&lt;/code&gt;top`，bash 就是 shell 的一种，也是 Linux 下的默认 shell 程序，现在让我们使用 zsh，重新打造一个更加人性化的 shell&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>dokcer的一些使用方法</title>
+      <link>http://xujimmy.com/2017/04/10/docker.html</link>
+      <pubDate>Mon, 10 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/04/10/docker.html</guid>
+      <description>&lt;p&gt;上半年也陆续使用了docker工具做开发部署，使用的经验还比较浅显，看到屈屈大神写的一篇文章不错，特转载过来，并加了点自己的心得&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>几条比较好用又经常忘记的 shell 命令</title>
+      <link>http://xujimmy.com/2017/01/16/linux-command.html</link>
+      <pubDate>Mon, 16 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/01/16/linux-command.html</guid>
+      <description>&lt;p&gt;linux命令行中，最常用的命令就那么几条，有时写了长长的一条命令，发现写错、漏写，想移动光标，如果直接按←，→，不仅慢，还不能体现出我们作为linux老鸟的优（zhuang）雅（bi），因此记下几个比较好用的命令，以作备忘&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>PHP中的自动加载</title>
+      <link>http://xujimmy.com/2017/01/08/php-autoload.html</link>
+      <pubDate>Sun, 08 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/01/08/php-autoload.html</guid>
+      <description>&lt;p&gt;对于21世纪的phper来说，应该或多或少听说过&lt;strong&gt;自动加载器&lt;/strong&gt;。自动加载，就是我们在new一个class前，不需要写require来包含这个class文件，由程序自动帮我们加载进来。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>influxdb配合grafana的监控</title>
+      <link>http://xujimmy.com/2016/12/21/influxdb-grafana.html</link>
+      <pubDate>Wed, 21 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2016/12/21/influxdb-grafana.html</guid>
+      <description>&lt;p&gt;在大型公司，对于监管众多服务器的资源使用情况，是一项不可或缺的工作，随时了解每个服务器的运行状态，负载情况，对于发现线上问题，有着重要的参考价值。对于线上服务，监控和了解集群的工作状况，也是必不可少的环节。在机器监控方面，新兴的influxdb配合grafana，有如倚天屠龙，简单又好用。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>linux命令之--awk</title>
+      <link>http://xujimmy.com/2016/11/16/linux-awk.html</link>
+      <pubDate>Wed, 16 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2016/11/16/linux-awk.html</guid>
+      <description>&lt;p&gt;&lt;code&gt;awk&lt;/code&gt;命令是一个强大的文本分析工具，相对于grep的查找，sed的编辑，awk在其对数据分析并生成报告时，显得尤为强大。简单来说awk就是把文件逐行的读入，以空格为默认分隔符将每行切片，切开的部分再进行各种分析处理。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>linux命令之--grep</title>
+      <link>http://xujimmy.com/2016/11/16/linux-grep.html</link>
+      <pubDate>Wed, 16 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2016/11/16/linux-grep.html</guid>
+      <description>&lt;p&gt;&lt;code&gt;grep&lt;/code&gt;命令是linux环境下使用频繁、功能强大的查找命令，基本每天的工作都会用到它，这里对grep命令做个总结，作为备忘&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>让你的 git 命令简化起来</title>
+      <link>http://xujimmy.com/2016/10/18/git-alias.html</link>
+      <pubDate>Tue, 18 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2016/10/18/git-alias.html</guid>
+      <description>&lt;p&gt;对于写代码的搬砖工来说，版本控制软件是日常工作中必不可少的工具。git 由于其强大的分布式管理、以及快速在版本间穿梭的功能，大有取代 svn 的趋势。对于使用 svn 的老一辈码农来说，那么怎么快速从 svn 切换到 git 呢？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>求两个文件的交集，并集，差集</title>
+      <link>http://xujimmy.com/2016/10/11/linux-sort.html</link>
+      <pubDate>Tue, 11 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2016/10/11/linux-sort.html</guid>
+      <description>&lt;p&gt;在 Linux下，有两个文件，分别记录了很多 ip 地址，怎么求得在两个文件中都出现的 ip？以及所有的不重复的 ip？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>用正则方式批量删除 redis 里的 key</title>
+      <link>http://xujimmy.com/2016/08/11/linux-xargs-redis.html</link>
+      <pubDate>Thu, 11 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2016/08/11/linux-xargs-redis.html</guid>
+      <description>&lt;p&gt;redis 里面有一批没用的 key，这些 key 以 test_开头，要求删掉这些key，在命令行中没法删除，可以写个脚本，一个一个删，也可以用下面 xargs 命令的方式&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MYSQL 中的 JOIN</title>
+      <link>http://xujimmy.com/2016/08/02/mysql-join.html</link>
+      <pubDate>Tue, 02 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2016/08/02/mysql-join.html</guid>
+      <description>&lt;p&gt;在我们写 SQL 语句时，会用到多表联合查询，这时就需要用到 JOIN 关键字了，本文用图来看下 MYSQL 中几种 JOIN 的区别。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>关于redis使用总结</title>
+      <link>http://xujimmy.com/2016/08/02/redis.html</link>
+      <pubDate>Tue, 02 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2016/08/02/redis.html</guid>
+      <description>&lt;p&gt;最近的项目一直在使用 redis，在参考前人文章的基础上，本文也对 redis 的使用做一个简单的归纳总结。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

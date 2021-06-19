@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Math on JimmyXu的小站</title>
+    <link>http://xujimmy.com/categories/math.html</link>
+    <description>Recent content in Math on JimmyXu的小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Fri, 22 May 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://xujimmy.com/categories/math/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>由病毒检测想到的一种面试题</title>
+      <link>http://xujimmy.com/2020/05/22/poison-detect.html</link>
+      <pubDate>Fri, 22 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2020/05/22/poison-detect.html</guid>
+      <description>&lt;p&gt;最近看到一个新闻，武汉开展全城新冠病毒核酸检测，要在 10 天内检测全市 1000 多万人中病毒携带者，这无疑是一个巨大的工程。这里我不打算深究医护人员是采用什么方式完成这项任务，主要想从这个检测事例中，引出一个有意思、又很有实践意义的问题：有 N 瓶无色无味液体（N 可能很大，如 100，1000，10000 等），其中混入了一瓶有毒液体，同时也有试剂，可以检测液体的毒性，如果试剂滴入到有毒液体中，液体变蓝，否则不变色，除此之外，不能通过其他方式检测。问题来了，如何用最少的检测次数，找到这瓶有毒液体。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>数学上的一些经典片段</title>
+      <link>http://xujimmy.com/2018/03/22/about-mathematical-formula.html</link>
+      <pubDate>Thu, 22 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2018/03/22/about-mathematical-formula.html</guid>
+      <description>&lt;p&gt;最近看的几本书里，都有提到一些数学方面的知识，有些符号和公式，放在现在，可能觉得没什么，一个小学生都能看懂，但却鲜有人知道，普及这些理论，需要几代人的不懈努力和探索。有些公式和推导，都堪称数学史上的经典，这里摘取一些片段，体会下数学的美妙，也让我们看看人类的智慧是无穷的&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

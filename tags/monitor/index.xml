@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>monitor on JimmyXu的小站</title>
+    <link>http://xujimmy.com/tags/monitor.html</link>
+    <description>Recent content in monitor on JimmyXu的小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 13 Dec 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://xujimmy.com/tags/monitor/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用 monitor 命令查看 redis 请求日志</title>
+      <link>http://xujimmy.com/2017/12/13/redis-request-log.html</link>
+      <pubDate>Wed, 13 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/12/13/redis-request-log.html</guid>
+      <description>&lt;p&gt;redis 是一个高性能、使用方便的非关系型数据库，我们在使用 redis 时，基本只需要关注存数据，取数据的功能，即 set，get，非常适合用作缓存服务器，降低后端数据库压力。有时，想确认下数据是否是从 redis 里读的，以及 redis 是怎么取得数据，这时就可以使用 monitor 功能了。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>由 daemon 账户到 ssh 免密登录的一点思考</title>
+      <link>http://xujimmy.com/2016/08/12/ssh-monitor.html</link>
+      <pubDate>Fri, 12 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2016/08/12/ssh-monitor.html</guid>
+      <description>&lt;p&gt;最近项目上遇到一个这样的场景：
+在A服务器上，我有一个监控脚本monitor.py，可以用来监控远程服务器的资源消耗情况，比如CPU,内存,IO等信息。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

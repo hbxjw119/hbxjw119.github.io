@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>xargs on JimmyXu的小站</title>
+    <link>http://xujimmy.com/tags/xargs.html</link>
+    <description>Recent content in xargs on JimmyXu的小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 11 Aug 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://xujimmy.com/tags/xargs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>用正则方式批量删除 redis 里的 key</title>
+      <link>http://xujimmy.com/2016/08/11/linux-xargs-redis.html</link>
+      <pubDate>Thu, 11 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2016/08/11/linux-xargs-redis.html</guid>
+      <description>&lt;p&gt;redis 里面有一批没用的 key，这些 key 以 test_开头，要求删掉这些key，在命令行中没法删除，可以写个脚本，一个一个删，也可以用下面 xargs 命令的方式&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

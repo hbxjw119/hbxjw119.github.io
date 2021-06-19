@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>git on JimmyXu的小站</title>
+    <link>http://xujimmy.com/tags/git.html</link>
+    <description>Recent content in git on JimmyXu的小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 23 Apr 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://xujimmy.com/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>git pull 和 git rebase</title>
+      <link>http://xujimmy.com/2019/04/23/git-pull-and-git-rebase.html</link>
+      <pubDate>Tue, 23 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2019/04/23/git-pull-and-git-rebase.html</guid>
+      <description>&lt;p&gt;git 是团队开发中常用的代码版本管理工具，我们经常会遇到这样一个场景：在 feature 分支上开发完一个新功能后，通常会做这样的操作：&lt;code&gt;git pull&lt;/code&gt;，然后&lt;code&gt;git push&lt;/code&gt;。但也有人喜欢在&lt;code&gt;git pull&lt;/code&gt;后面再上&lt;code&gt;--rebase&lt;/code&gt;参数，即&lt;code&gt;git pull --rebase&lt;/code&gt;，这是什么意思呢？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>让你的 git 命令简化起来</title>
+      <link>http://xujimmy.com/2016/10/18/git-alias.html</link>
+      <pubDate>Tue, 18 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2016/10/18/git-alias.html</guid>
+      <description>&lt;p&gt;对于写代码的搬砖工来说，版本控制软件是日常工作中必不可少的工具。git 由于其强大的分布式管理、以及快速在版本间穿梭的功能，大有取代 svn 的趋势。对于使用 svn 的老一辈码农来说，那么怎么快速从 svn 切换到 git 呢？&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on JimmyXu的小站</title>
+    <link>http://xujimmy.com/categories/linux.html</link>
+    <description>Recent content in Linux on JimmyXu的小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 19 Nov 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://xujimmy.com/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>linux 命令之--find</title>
+      <link>http://xujimmy.com/2017/11/19/linux-find.html</link>
+      <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/11/19/linux-find.html</guid>
+      <description>&lt;p&gt;&lt;code&gt;find&lt;/code&gt;命令也是 linux 环境下使用频繁、功能强大的查找命令，基本每天的工作都会用到它，这里对&lt;code&gt;find&lt;/code&gt;命令做个总结，作为备忘&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用 zsh，重新打造你的 Linux 工作环境</title>
+      <link>http://xujimmy.com/2017/06/20/linux-zsh.html</link>
+      <pubDate>Tue, 20 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/06/20/linux-zsh.html</guid>
+      <description>&lt;p&gt;对于经常在 Linux 环境下干活的码农们，shell 可以说是我们使用频率最高的程序了，shell 为我们和机器间建立了一个桥梁，它给我们提供一系列命令，我们就可以和机器进行愉快的交流了，比如写代码用&lt;code&gt;vim&lt;/code&gt;命令，查找文件使用&lt;code&gt;find`,&lt;/code&gt;grep&lt;code&gt;命令，版本控制使用&lt;/code&gt;git&lt;code&gt;，查看机器性能使用&lt;/code&gt;top`，bash 就是 shell 的一种，也是 Linux 下的默认 shell 程序，现在让我们使用 zsh，重新打造一个更加人性化的 shell&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>几条比较好用又经常忘记的 shell 命令</title>
+      <link>http://xujimmy.com/2017/01/16/linux-command.html</link>
+      <pubDate>Mon, 16 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/01/16/linux-command.html</guid>
+      <description>&lt;p&gt;linux命令行中，最常用的命令就那么几条，有时写了长长的一条命令，发现写错、漏写，想移动光标，如果直接按←，→，不仅慢，还不能体现出我们作为linux老鸟的优（zhuang）雅（bi），因此记下几个比较好用的命令，以作备忘&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>linux命令之--awk</title>
+      <link>http://xujimmy.com/2016/11/16/linux-awk.html</link>
+      <pubDate>Wed, 16 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2016/11/16/linux-awk.html</guid>
+      <description>&lt;p&gt;&lt;code&gt;awk&lt;/code&gt;命令是一个强大的文本分析工具，相对于grep的查找，sed的编辑，awk在其对数据分析并生成报告时，显得尤为强大。简单来说awk就是把文件逐行的读入，以空格为默认分隔符将每行切片，切开的部分再进行各种分析处理。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>linux命令之--grep</title>
+      <link>http://xujimmy.com/2016/11/16/linux-grep.html</link>
+      <pubDate>Wed, 16 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2016/11/16/linux-grep.html</guid>
+      <description>&lt;p&gt;&lt;code&gt;grep&lt;/code&gt;命令是linux环境下使用频繁、功能强大的查找命令，基本每天的工作都会用到它，这里对grep命令做个总结，作为备忘&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>求两个文件的交集，并集，差集</title>
+      <link>http://xujimmy.com/2016/10/11/linux-sort.html</link>
+      <pubDate>Tue, 11 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2016/10/11/linux-sort.html</guid>
+      <description>&lt;p&gt;在 Linux下，有两个文件，分别记录了很多 ip 地址，怎么求得在两个文件中都出现的 ip？以及所有的不重复的 ip？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>用正则方式批量删除 redis 里的 key</title>
+      <link>http://xujimmy.com/2016/08/11/linux-xargs-redis.html</link>
+      <pubDate>Thu, 11 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2016/08/11/linux-xargs-redis.html</guid>
+      <description>&lt;p&gt;redis 里面有一批没用的 key，这些 key 以 test_开头，要求删掉这些key，在命令行中没法删除，可以写个脚本，一个一个删，也可以用下面 xargs 命令的方式&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

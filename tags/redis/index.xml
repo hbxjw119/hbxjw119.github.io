@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>redis on JimmyXu的小站</title>
+    <link>http://xujimmy.com/tags/redis.html</link>
+    <description>Recent content in redis on JimmyXu的小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 13 Dec 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://xujimmy.com/tags/redis/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用 monitor 命令查看 redis 请求日志</title>
+      <link>http://xujimmy.com/2017/12/13/redis-request-log.html</link>
+      <pubDate>Wed, 13 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/12/13/redis-request-log.html</guid>
+      <description>&lt;p&gt;redis 是一个高性能、使用方便的非关系型数据库，我们在使用 redis 时，基本只需要关注存数据，取数据的功能，即 set，get，非常适合用作缓存服务器，降低后端数据库压力。有时，想确认下数据是否是从 redis 里读的，以及 redis 是怎么取得数据，这时就可以使用 monitor 功能了。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>用正则方式批量删除 redis 里的 key</title>
+      <link>http://xujimmy.com/2016/08/11/linux-xargs-redis.html</link>
+      <pubDate>Thu, 11 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2016/08/11/linux-xargs-redis.html</guid>
+      <description>&lt;p&gt;redis 里面有一批没用的 key，这些 key 以 test_开头，要求删掉这些key，在命令行中没法删除，可以写个脚本，一个一个删，也可以用下面 xargs 命令的方式&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>关于redis使用总结</title>
+      <link>http://xujimmy.com/2016/08/02/redis.html</link>
+      <pubDate>Tue, 02 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2016/08/02/redis.html</guid>
+      <description>&lt;p&gt;最近的项目一直在使用 redis，在参考前人文章的基础上，本文也对 redis 的使用做一个简单的归纳总结。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

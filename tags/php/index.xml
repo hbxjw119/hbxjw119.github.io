@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>php on JimmyXu的小站</title>
+    <link>http://xujimmy.com/tags/php.html</link>
+    <description>Recent content in php on JimmyXu的小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 11 Oct 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://xujimmy.com/tags/php/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>php-fpm 子进程的数量，是越大越好吗？</title>
+      <link>http://xujimmy.com/2017/10/11/fpm-conf.html</link>
+      <pubDate>Wed, 11 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/10/11/fpm-conf.html</guid>
+      <description>&lt;p&gt;我们知道，在 Linux 环境下，处理php脚本的进程是&lt;code&gt;php-fpm&lt;/code&gt;。&lt;code&gt;php-fpm&lt;/code&gt;的允许方式有两种：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;static ：表示在 &lt;code&gt;php-fpm&lt;/code&gt; 运行时直接 &lt;code&gt;fork&lt;/code&gt; 出 &lt;code&gt;pm.max_chindren&lt;/code&gt; 个子进程，&lt;/li&gt;
+&lt;li&gt;dynamic：表示，运行时 &lt;code&gt;fork&lt;/code&gt; 出 &lt;code&gt;start_servers&lt;/code&gt; 个进程，随着负载的情况，动态的调整，最多不超过 &lt;code&gt;max_children&lt;/code&gt; 个进程。&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>由 lnmp 一键安装脚本所引发的错误</title>
+      <link>http://xujimmy.com/2017/09/12/lnmp-debug.html</link>
+      <pubDate>Tue, 12 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/09/12/lnmp-debug.html</guid>
+      <description>&lt;p&gt;在装&lt;a href=&#34;https://lnmp.org/&#34;&gt;lnmp&lt;/a&gt;全家桶时，有时为了方便，会直接用一键安装脚本，一条命令，就把所有的环境都装好了，简单省事，但有时出现配置错误，也不太好排查，分享一个遇到的问题。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>关于 Cookie 和 Session 的几点问题</title>
+      <link>http://xujimmy.com/2017/01/11/cookie-session.html</link>
+      <pubDate>Wed, 11 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/01/11/cookie-session.html</guid>
+      <description>&lt;p&gt;咱做 web 开发的，任何时候都少不了要和 Cookie 以及 Session 打交道，我们平时主要用他们来实现用户的登陆和用户的信息存储。说到 Cookie 和 Session，我们一般会很简单地想到他们一个是客户端的存储机制，一个是服务器端的存储机制。然而，事实是否真的仅仅是这样的呢？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>PHP中的自动加载</title>
+      <link>http://xujimmy.com/2017/01/08/php-autoload.html</link>
+      <pubDate>Sun, 08 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/01/08/php-autoload.html</guid>
+      <description>&lt;p&gt;对于21世纪的phper来说，应该或多或少听说过&lt;strong&gt;自动加载器&lt;/strong&gt;。自动加载，就是我们在new一个class前，不需要写require来包含这个class文件，由程序自动帮我们加载进来。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>PHP中的依赖注入是什么东西</title>
+      <link>http://xujimmy.com/2017/01/02/php-di.html</link>
+      <pubDate>Mon, 02 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2017/01/02/php-di.html</guid>
+      <description>&lt;p&gt;设计模式中，有一个叫控制反转（Inversion of Control），也叫依赖注入(Dependency Injection)，这种设计模式用来减少程序间的耦合，这篇文章不讲解概念性的东西，直接上代码，如果要深追理论，要看设计模式一书&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>由 daemon 账户到 ssh 免密登录的一点思考</title>
+      <link>http://xujimmy.com/2016/08/12/ssh-monitor.html</link>
+      <pubDate>Fri, 12 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://xujimmy.com/2016/08/12/ssh-monitor.html</guid>
+      <description>&lt;p&gt;最近项目上遇到一个这样的场景：
+在A服务器上，我有一个监控脚本monitor.py，可以用来监控远程服务器的资源消耗情况，比如CPU,内存,IO等信息。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
